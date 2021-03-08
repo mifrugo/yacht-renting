@@ -6,15 +6,15 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   # Yatchs listing
-  get     '/yatchs',              to: 'yatchs#index'
+  get     '/yachts',              to: 'yachts#index'
   # Single yatch
-  get     '/yatchs/:id',          to: 'yatchs#show'
+  get     '/yachts/:id',          to: 'yachts#show'
   # Book a yatch
-  post    '/yatchs/:id',          to: 'yatchs#book'
+  post    '/yachts/:id',          to: 'yachts#book'
   # Update listing
-  patch   '/yatchs/:id',          to: 'yatchs#edit'
+  patch   '/yachts/:id',          to: 'yachts#edit'
   # Remove listing
-  delete  '/yatchs/:id',          to: 'yatchs#destroy'
+  delete  '/yachts/:id',          to: 'yachts#destroy'
   # Update review
   patch   '/reviews/:id',         to: 'reviews#update'
 
