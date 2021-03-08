@@ -1,1 +1,37 @@
 // Specific CSS for your home-page
+h2 {
+  text-align: center;  
+}
+
+#yacht-banner {
+  margin: auto;
+  margin-bottom: 20px;
+  position: static;  
+  background-image: url("https://images.unsplash.com/photo-1519011866958-6ac4dd2bbba4?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NTl8fHNlYSUyMHBhdHRlcm58ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
+  background-size: cover;
+  background-position:75% 25%;
+}
+
+#yacht-banner > img {
+  object-fit: cover;
+}
+
+#yacht-banner {
+    
+  h1 {
+    color: black;
+    opacity: 0.9;
+}
+
+  p {
+    color: white;
+    opacity: 0.9;
+    text-shadow: 2px 2px grey;
+  }
+}
+
+.yacht-banner-content {
+    margin-top:auto;
+    margin-bottom:auto;
+    text-align:center;  
+}
