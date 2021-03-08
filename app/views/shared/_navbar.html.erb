@@ -21,7 +21,7 @@
               <%= current_user.navbar_avatar(size: 60) %>
               <div class="d-block mt-2">
                 <div><%= current_user.first_name %> <%= current_user.last_name %></div>
-                <a class="user-update" href="#">update profile</a>
+                <%= link_to "update profile", "#", class: "small", data: { toggle: 'modal', target: '#editUserModal' } %>
               </div>
             </div>
               <%= link_to yachts_new_path, class: "dropdown-item" do %>
@@ -42,7 +42,7 @@
       <% else %>
         <% unless %w[sessions registrations].include? controller_name  %>
           <li class="nav-item">
-            <%= link_to "Login", "#", class: "btn btn-primary", id: "btn-login", data: { toggle: 'modal', target: '#loginModal' } %>
+            <%= link_to "Login", "#", class: "btn btn-primary", data: { toggle: 'modal', target: '#loginModal' } %>
           </li>
           <li class="nav-item">
             <%= link_to 'Register', new_user_registration_path, class: "btn btn-info ml-2" %>
@@ -53,5 +53,8 @@
   </div>
 </div>
 
-<%= render "devise/sessions/modal" %>
-
+<% if user_signed_in? %>
+  <%= render 'devise/registrations/modal' %>
+<% else %>
+  <%= render 'devise/sessions/modal' %>
+<% end %>
