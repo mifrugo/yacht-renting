@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-light navbar-yacht">
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag 'yatch.svg' %>
     <span>My Yachty site</span>
@@ -14,23 +14,31 @@
       <% if user_signed_in? %>
         <li class="nav-item dropdown">
           <a href="#" data-toggle="dropdown" id="navbarDropdown">
-            <% if current_user.avatar.attached? %>
-              <%= cl_image_tag current_user.avatar.key, class: 'avatar' %>
-            <% else %>
-                <%= lavatar_tag(current_user.first_name[0].upcase, 40,
-                    {
-                      key:        current_user.id,
-                      class:      "avatar"
-                    }
-                ) %>
-            <% end %>
+            <%= current_user.navbar_avatar %>
           </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-           <%= link_to "Add yacht", yachts_new_path, class: "dropdown-item" %>
-            <%= link_to "Another action", "#", class: "dropdown-item" %>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          <div id="user-dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <div class="dropdown-top text-center">
+              <%= current_user.navbar_avatar(size: 60) %>
+              <div class="d-block mt-2">
+                <div><%= current_user.first_name %> <%= current_user.last_name %></div>
+                <a class="user-update" href="#">update profile</a>
+              </div>
+            </div>
+              <%= link_to yachts_new_path, class: "dropdown-item" do %>
+                <%= image_tag 'list.svg' %> Your listings
+              <% end %>
+              <%= link_to yachts_new_path, class: "dropdown-item" do %>
+                <%= image_tag 'star.svg' %> Favorites
+              <% end %>
+            <div class="dropdown-divider"></div>
+            <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
+              <%= image_tag 'logout.svg' %> Log out
+            <% end %>
           </div>
         </li>
+        <%= link_to yachts_new_path, class: "btn btn-outline-warning ml-2" do %>
+          <i class="fas fa-ship"></i> New yacht
+        <% end %>
       <% else %>
         <% unless %w[sessions registrations].include? controller_name  %>
           <li class="nav-item">
