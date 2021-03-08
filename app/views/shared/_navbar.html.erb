@@ -1,7 +1,8 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to "#", class: "navbar-brand" do %>
-    <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
-    <% end %>
+  <%= link_to root_path, class: "navbar-brand" do %>
+    <%= image_tag 'yatch.svg' %>
+    <span>My Yatchy site</span>
+  <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -26,10 +27,18 @@
           </div>
         </li>
       <% else %>
-        <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-        </li>
+        <% if controller_name != 'sessions'  %>
+          <li class="nav-item">
+            <%= link_to "Login", "#", class: "btn btn-primary", id: "btn-login", data: { toggle: 'modal', target: '#loginModal' } %>
+          </li>
+        <% end %>
+          <li class="nav-item">
+            <%= link_to 'Register', new_user_registration_path, class: "btn btn-info ml-2" %>
+          </li>
       <% end %>
     </ul>
   </div>
 </div>
+
+<%= render "devise/sessions/modal" %>
+
