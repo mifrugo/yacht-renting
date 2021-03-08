@@ -22,6 +22,4 @@ end
   )
 end
 
-
-
 puts "Your data is ready! 🍪"
