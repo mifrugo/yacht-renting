@@ -26,9 +26,14 @@
           </div>
         </li>
       <% else %>
-        <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-        </li>
+        <% if controller_name != 'sessions'  %>
+          <li class="nav-item">
+            <%= link_to "Login", "#", class: "btn btn-primary", id: "btn-login", data: { toggle: 'modal', target: '#loginModal' } %>
+          </li>
+        <% end %>
+          <li class="nav-item">
+            <%= link_to 'Register', new_user_registration_path, class: "btn btn-info ml-2" %>
+          </li>
       <% end %>
     </ul>
   </div>
