@@ -1,3 +1,4 @@
+<%- unless %w[sessions registrations].include? controller_name %>
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -28,3 +29,4 @@
   </div>
   <% end %>
 </div>
+<% end %>
