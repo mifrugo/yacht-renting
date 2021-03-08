@@ -9,6 +9,9 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+    <% unless user_signed_in? %>
+      <%= javascript_pack_tag 'application_guests', 'data-turbolinks-track': 'reload', defer: true %>
+    <% end %>
   </head>
 
   <body>
