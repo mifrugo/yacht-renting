@@ -14,13 +14,13 @@ Rails.application.routes.draw do
 
   # Yatchs listing
   get     '/yachts',              to: 'yachts#index'
-  # Single yatch
-  get     '/yachts/:id',          to: 'yachts#show'
-  # Book a yatch
-  post    '/yachts/:id',          to: 'yachts#book'
   # New yacht
   get     '/yachts/new',          to: 'yachts#new'
   post    '/yachts',              to: 'yachts#create'
+  # Single yatch
+  get     '/yachts/:id',          to: 'yachts#show', as: 'yacht'
+  # Book a yatch
+  post    '/yachts/:id',          to: 'yachts#book'
 
   # Update listing
   patch   '/yachts/:id',          to: 'yachts#edit'

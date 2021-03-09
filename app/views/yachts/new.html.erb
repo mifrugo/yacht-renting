@@ -1,0 +1,54 @@
+<h2>Add a new yacht</h2>
+
+<%= simple_form_for(@yacht) do |f| %>
+	<div class="form-inputs">
+	<%= f.input :title,
+							required: true,
+							autofocus: true,
+							input_html: { autocomplete: "title" }%>
+		<%= f.input :description,
+								required: true,
+								input_html: { autocomplete: "description" } %>
+
+    <%= f.input :price_per_day,
+								required: true,
+								input_html: { autocomplete: "price_per_day" } %>
+
+    <%= f.input :bed_space,
+								required: true,
+								input_html: { autocomplete: "bed_space" } %>
+
+    <%= f.input :services, collection: Yacht::SERVICES, input_html: { multiple: true }, include_hidden: false %>
+    <%= f.input :equipments, collection: Yacht::EQUIPMENTS, input_html: { multiple: true }, include_hidden: false %>
+
+    <%= f.input :lat, input_html: {class: 'd-none'}, label: false %>
+    <%= f.input :long, input_html: {class: 'd-none'}, label: false %>
+	</div>
+
+  <div id="geocoder" class="geocoder"></div>
+  <div style="position: relative; height: 30vh" class="mb-2">
+    <div id="map"></div>
+  </div>
+
+  <%= f.input :photos, as: :file, input_html: {multiple: true} %>
+  <div class="form-actions mt-3">
+    <%= f.button :submit, "Create listing", class: 'btn btn-primary w-100' %>
+  </div>
+<% end %>
+
+<style>
+
+.mapboxgl-ctrl-geocoder {
+min-width: 100%;
+}
+#map {
+margin-top: 10px;
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+</style>
