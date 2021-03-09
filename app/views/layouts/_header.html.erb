@@ -1,0 +1,23 @@
+<div class="jumbotron jumbotron-fluid pt-0 pb-4 d-flex align-items-center center-banner">
+  <div class="container text-white d-none">
+    <h1 class="display-4" id="title">Rent Yachtes</h1>
+    <p class="lead">We help you get what you need 😎🍹</p>
+    <hr class="my-4">
+    <p>Join our community and get in touch with thousands of Yachts' renters.</p>
+    <p class="lead">
+    <%= button_to 'Sign Up', new_user_session_path, class: "btn btn-success" %>
+    </p>
+  </div>
+</div>
+
+<div class="container">
+  <h2>Hot Yachts 🔥</h2>
+  <div class="card">
+    <% @yachts.first(5).each do |yacht| %>
+      <div class="card-body">
+        <h3><%= yacht.title %></h2>
+        <h6><%= yacht.description %></h5>
+      </div>
+   <% end %>
+  </div>
+</div>
