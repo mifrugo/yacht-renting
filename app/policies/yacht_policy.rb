@@ -14,7 +14,7 @@ class YachtPolicy < ApplicationPolicy
   end
 
   def user_list?
-    user
+    true
   end
 
   def update?
