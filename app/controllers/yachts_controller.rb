@@ -51,26 +51,10 @@ class YachtsController < ApplicationController
 
   private
 
-  def single_yacht
-    @yacht = Yacht.find(params[:id])
-  end
-
-  private
-
   def set_yacht
     @yacht = Yacht.find(params[:id])
     authorize @yacht
   end
-
-  def yacht_params
-    params.require(@yacht).permit(:title, :description, :booking_type)
-  end
-
-  def new
-    @yacht = Yacht.new
-  end
-
-  private
 
   def yacht_params
     params.require(:yacht).permit(
