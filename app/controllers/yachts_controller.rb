@@ -1,10 +1,18 @@
 class YachtsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
+  before_action :set_yacht, only: %i[show book review edit destroy]
 
   def index
+    @yachts = policy_scope(Yacht)
   end
 
   def show
+
+  end
+
+  def new
+    @yacht = Yacht.new
+    authorize @yacht
   end
 
   def book
@@ -15,7 +23,7 @@ class YachtsController < ApplicationController
 
   def create
     @yacht = Yacht.new(yacht_params)
-
+    
     if @yacht.save
       save_services if params[:yacht][:services]
       save_equipments if params[:yacht][:equipments]
@@ -30,6 +38,24 @@ class YachtsController < ApplicationController
   end
 
   def destroy
+
+  end
+
+  private
+
+  def single_yacht
+    @yacht = Yacht.find(params[:id])
+  end
+
+  private
+
+  def set_yacht
+    @yacht = Yacht.find(params[:id])
+    authorize @yacht
+  end
+
+  def yacht_params
+    params.require(@yacht).permit(:title, :description, :booking_type)
   end
 
   def new
