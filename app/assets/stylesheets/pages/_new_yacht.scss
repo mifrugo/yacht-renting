@@ -1,0 +1,13 @@
+.yachts-new {
+  .mapboxgl-ctrl-geocoder {
+  min-width: 100%;
+  }
+
+  #map {
+    margin-top: 10px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+  }
+}

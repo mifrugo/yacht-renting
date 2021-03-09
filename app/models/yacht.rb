@@ -12,4 +12,5 @@ class Yacht < ApplicationRecord
 
   validates :lat, :long, presence: { message: 'Enter a valid location' }
 
+  validates :bed_space, presence: true
 end
