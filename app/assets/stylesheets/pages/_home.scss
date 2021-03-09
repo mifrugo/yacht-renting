@@ -18,7 +18,31 @@ body {
     }  
     .center-banner {
       width: 100vh;
+
+    }
+  }  
+  .carousel-container{
+    margin: auto;
+    width: 50%;
+    border: 3px solid black;
+    padding: 10px;
+
+    .carousel-caption {
+      font-weight: bold;
+      .carousel-content{
+        object-position: top;
+        border-radius: 5px;
+        background: rgb(60, 60, 60);
+        background: rgba(60, 60, 60, 0.4);
+      > h5 {
+        color: black;
+        text-shadow: 1px 1px #ffc759;
+      }
+      > p {
+        color: #ffc759;
+        text-shadow: 2px 2px black;
+      }
+      }
     }
   }
-}
-
+}  
