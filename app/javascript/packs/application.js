@@ -22,5 +22,5 @@ document.addEventListener('turbolinks:load', () => {
   removeAlert();
   blockDropDown();
 
-  renderMap();
+  document.body.classList.contains('yachts-new') && renderMap();
 });

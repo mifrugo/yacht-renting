@@ -17,6 +17,9 @@ class YachtsController < ApplicationController
     @yacht = Yacht.new(yacht_params)
 
     if @yacht.save
+      save_services if params[:yacht][:services]
+      save_equipments if params[:yacht][:equipments]
+
       redirect_to yacht_path(@yacht), notice: "Listing succesfully created!"
     else
       render :new
@@ -36,6 +39,24 @@ class YachtsController < ApplicationController
   private
 
   def yacht_params
-    params.require(:yacht).permit(:title, :description, :lat, :long, { photos: [] })
+    params.require(:yacht).permit(
+      :title, :description, :lat, :long, :price_per_day, { photos: [] }
+    )
+  end
+
+  def save_services
+    params[:yacht][:services].each do |service|
+      new_service = Service.new(name: service)
+      new_service.yacht = @yacht
+      new_service.save
+    end
+  end
+
+  def save_equipments
+    params[:yacht][:equipments].each do |equipment|
+      new_equipment = Equipment.new(name: equipment)
+      new_equipment.yacht = @yacht
+      new_equipment.save
+    end
   end
 end
