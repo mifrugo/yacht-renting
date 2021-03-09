@@ -32,6 +32,8 @@ class YachtsController < ApplicationController
     @yacht = Yacht.new(yacht_params)
     @yacht.user = current_user
 
+    authorize @yacht
+
     if @yacht.save
       save_services if params[:yacht][:services]
       save_equipments if params[:yacht][:equipments]
