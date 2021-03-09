@@ -13,6 +13,14 @@ class User < ApplicationRecord
 
   after_save :wipe_cache
 
+  def first_name=(val)
+    self[:first_name] = val.capitalize
+  end
+
+  def last_name=(val)
+    self[:last_name] = val.capitalize
+  end
+
   def self.serialize_from_session(key, salt)
     user = Rails.cache.fetch("user:#{key.first}") do
       to_adapter.get(key)
