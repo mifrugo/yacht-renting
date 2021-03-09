@@ -9,9 +9,14 @@
 		<%= f.input :description,
 								required: true,
 								input_html: { autocomplete: "description" } %>
+
     <%= f.input :price_per_day,
 								required: true,
 								input_html: { autocomplete: "price_per_day" } %>
+
+    <%= f.input :bed_space,
+								required: true,
+								input_html: { autocomplete: "bed_space" } %>
 
     <%= f.input :services, collection: Yacht::SERVICES, input_html: { multiple: true }, include_hidden: false %>
     <%= f.input :equipments, collection: Yacht::EQUIPMENTS, input_html: { multiple: true }, include_hidden: false %>

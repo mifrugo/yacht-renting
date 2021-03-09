@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_09_150546) do
+ActiveRecord::Schema.define(version: 2021_03_09_152325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 2021_03_09_150546) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "location_id"
     t.integer "price_per_day"
+    t.integer "bed_space", default: 0
     t.index ["location_id"], name: "index_yachts_on_location_id"
   end
 
