@@ -1,2 +1,24 @@
-<h1>Yatchs#show</h1>
-<p>Find me in app/views/yatchs/show.html.erb</p>
+<h2><%= @yacht.title.titlecase %></h2>
+
+
+
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/yacht-oceanco-102-m-oggetto-editoriale-800x600-1528446630.jpg?crop=1.00xw:0.727xh;0,0.118xh&resize=640:*);">
+  <div class="container">
+
+  </div>
+</div>
+
+
+    <p><%= @yacht.description %></p>
+
+
+
+
+
+<div class="show-button">
+  <%= link_to "Back", "yachts_path", class: "btn btn-primary" %>
+  <a class="btn btn-primary" href="#">Book now</a>
+</div>
+
+
