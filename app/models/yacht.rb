@@ -1,7 +1,9 @@
 class Yacht < ApplicationRecord
-  belongs_to :location
+  # belongs_to :location
 
-  validates :title, presence: true
-  validates :description, presence: true
-  validates :booking_type, presence: true
+  validates :title, :description, :price_per_day, presence: true
+
+  validates :lat, :long, presence: { message: 'Enter a valid location' }
+
+  has_many_attached :photos
 end

@@ -16,8 +16,11 @@ window.$ = $;
 
 import { removeAlert } from '../components/init_removeAlert'
 import { blockDropDown } from '../components/init_blockdropdown'
+import { renderMap } from '../components/init_mapNewListing'
 
 document.addEventListener('turbolinks:load', () => {
   removeAlert();
   blockDropDown();
+
+  renderMap();
 });
