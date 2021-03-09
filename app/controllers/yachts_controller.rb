@@ -12,6 +12,8 @@ class YachtsController < ApplicationController
 
   def new
     @yacht = Yacht.new
+    @services = ServiceType.all
+    @equipments = EquipmentType.all
     authorize @yacht
   end
 
@@ -70,7 +72,7 @@ class YachtsController < ApplicationController
 
   def save_services
     params[:yacht][:services].each do |service|
-      new_service = Service.new(name: service)
+      new_service = Service.new(service_type_id: service)
       new_service.yacht = @yacht
       new_service.save
     end
@@ -78,7 +80,7 @@ class YachtsController < ApplicationController
 
   def save_equipments
     params[:yacht][:equipments].each do |equipment|
-      new_equipment = Equipment.new(name: equipment)
+      new_equipment = Equipment.new(equipment_type_id: equipment)
       new_equipment.yacht = @yacht
       new_equipment.save
     end

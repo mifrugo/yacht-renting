@@ -17,8 +17,8 @@
 								required: true,
 								input_html: { autocomplete: "bed_space" } %>
 
-    <%= f.input :services, collection: Yacht::SERVICES, input_html: { multiple: true }, include_hidden: false %>
-    <%= f.input :equipments, collection: Yacht::EQUIPMENTS, input_html: { multiple: true }, include_hidden: false %>
+    <%= f.input :services, collection: @services, input_html: { multiple: true }, include_hidden: false %>
+    <%= f.input :equipments, collection: @equipments, input_html: { multiple: true }, include_hidden: false %>
 
     <%= f.input :lat, input_html: {class: 'd-none'}, label: false %>
     <%= f.input :long, input_html: {class: 'd-none'}, label: false %>

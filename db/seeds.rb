@@ -11,6 +11,7 @@ EquipmentType.destroy_all
 ServiceType.destroy_all
 User.destroy_all
 
+puts "Resetting the tables..."
 ActiveRecord::Base.connection.reset_pk_sequence!('users')
 ActiveRecord::Base.connection.reset_pk_sequence!('yachts')
 ActiveRecord::Base.connection.reset_pk_sequence!('equipment_types')
@@ -57,5 +58,8 @@ puts "Creating your instances.."
     service_type: ServiceType.all.sample
   )
 end
+
+puts "Flushing cache..."
+Rails.cache.redis.flushall
 
 puts "Your data is ready! 🍪"
