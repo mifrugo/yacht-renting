@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     put '/users/avatar', to: 'update_users#update_avatar'
     put '/users/email', to: 'update_users#update_email'
     put '/users/password', to: 'update_users#update_password'
+    get '/users/:id/yatchs', to: 'yachts#user_list', as: :yacht_user
   end
 
   devise_for :users

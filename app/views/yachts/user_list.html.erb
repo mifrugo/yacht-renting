@@ -1,0 +1,6 @@
+<h2 class="my-3 text-center"><span class="text-primary"><%= @user.full_name %></span> active listings</h2>
+<div class="card-columns">
+  <% @yachts.each do |yacht| %>
+    <%= render 'card', locals: yacht %>
+  <% end %>
+</div>

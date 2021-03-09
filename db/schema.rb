@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_09_152325) do
+ActiveRecord::Schema.define(version: 2021_03_09_154715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,10 +85,13 @@ ActiveRecord::Schema.define(version: 2021_03_09_152325) do
     t.bigint "location_id"
     t.integer "price_per_day"
     t.integer "bed_space", default: 0
+    t.bigint "user_id", null: false
     t.index ["location_id"], name: "index_yachts_on_location_id"
+    t.index ["user_id"], name: "index_yachts_on_user_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "equipment", "yachts"
   add_foreign_key "services", "yachts"
+  add_foreign_key "yachts", "users"
 end

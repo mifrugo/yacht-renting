@@ -10,6 +10,7 @@ class User < ApplicationRecord
   validates :last_name, presence: true
 
   has_one_attached :avatar
+  has_many :yachts, dependent: :destroy
 
   after_save :wipe_cache
 
@@ -19,6 +20,10 @@ class User < ApplicationRecord
 
   def last_name=(val)
     self[:last_name] = val.capitalize
+  end
+
+  def full_name
+    first_name << ' ' << last_name
   end
 
   def self.serialize_from_session(key, salt)

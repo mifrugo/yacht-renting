@@ -1,7 +1,9 @@
 class Yacht < ApplicationRecord
   # belongs_to :location
-  has_many :services
-  has_many :equipments
+  has_many :services, dependent: :destroy
+  has_many :equipments, dependent: :destroy
+
+  belongs_to :user
 
   has_many_attached :photos
 
@@ -12,4 +14,5 @@ class Yacht < ApplicationRecord
 
   validates :lat, :long, presence: { message: 'Enter a valid location' }
 
+  validates :bed_space, presence: true
 end
