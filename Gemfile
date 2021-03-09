@@ -33,6 +33,8 @@ gem 'devise'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
+gem 'lavatar'
+gem 'cloudinary'
 
 group :development, :test do
   gem 'pry-byebug'

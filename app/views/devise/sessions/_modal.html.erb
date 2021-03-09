@@ -1,3 +1,4 @@
+<%- unless %w[sessions registrations].include? controller_name %>
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -17,7 +18,7 @@
           <%= f.input :password,
                       required: false,
                       input_html: { autocomplete: "current-password" } %>
-          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+          <%= f.input :remember_me, as: :boolean, input_html: { checked: true } if devise_mapping.rememberable? %>
         </div>
       </div>
       <div class="modal-footer">
@@ -28,3 +29,4 @@
   </div>
   <% end %>
 </div>
+<% end %>
