@@ -13,6 +13,10 @@ class YachtPolicy < ApplicationPolicy
     true
   end
 
+  def user_list?
+    user
+  end
+
   def update?
     #if the user is the owner of the yacht => true
     #otherwise => false
