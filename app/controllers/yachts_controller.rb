@@ -1,12 +1,13 @@
 class YachtsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
-  before_action :set_yacht, only: %i[show edit update delete]
+  before_action :set_yacht, only: %i[show book review edit destroy]
 
   def index
     @yachts = policy_scope(Yacht)
   end
 
   def show
+
   end
 
   def new
@@ -36,6 +37,13 @@ class YachtsController < ApplicationController
   end
 
   def destroy
+
+  end
+
+  private
+
+  def single_yacht
+    @yacht = Yacht.find(params[:id])
   end
 
   private
