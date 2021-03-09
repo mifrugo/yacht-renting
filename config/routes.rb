@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
   # User routes
+
+  devise_scope :user do
+    put '/users/avatar', to: 'update_users#update_avatar'
+    put '/users/email', to: 'update_users#update_email'
+    put '/users/password', to: 'update_users#update_password'
+  end
+
   devise_for :users
 
   # Homepage
