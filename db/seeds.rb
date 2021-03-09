@@ -8,15 +8,15 @@ puts "Creating your instances.."
 
 10.times do
   Location.create!(
-  name: Faker::Address.city 
+  name: Faker::Address.city
   )
 end
 
-30.times do 
+30.times do
   location = Location.all.sample.id
   Yacht.create!(
   title: Faker::Team.name,
-  description: Faker::Quotes::Shakespeare.hamlet_quote,
+  description: Faker::Lorem.paragraphs,
   booking_type: rand(1..2),
   location_id: location
   )
