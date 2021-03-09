@@ -25,6 +25,8 @@ class YachtsController < ApplicationController
     @yachts = Yacht.where(user_id: params[:id])
     @user = User.find_by_id(params[:id])
 
+    authorize @yachts
+
     redirect_to root_path, notice: 'User not found 😢' unless @user
   end
 
