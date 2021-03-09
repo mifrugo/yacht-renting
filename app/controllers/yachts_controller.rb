@@ -13,8 +13,16 @@ class YachtsController < ApplicationController
   def review
   end
 
+  def user_list
+    @yachts = Yacht.where(user_id: params[:id])
+    @user = User.find_by_id(params[:id])
+
+    redirect_to root_path, notice: 'User not found 😢' unless @user
+  end
+
   def create
     @yacht = Yacht.new(yacht_params)
+    @yacht.user = current_user
 
     if @yacht.save
       save_services if params[:yacht][:services]

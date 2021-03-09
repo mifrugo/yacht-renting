@@ -20,7 +20,7 @@
             <div class="dropdown-top text-center">
               <%= current_user.navbar_avatar(size: 60) %>
               <div class="d-block mt-2">
-                <div><%= current_user.first_name %> <%= current_user.last_name %></div>
+                <div><%= current_user.full_name %></div>
                 <%= link_to "update profile", "#", class: "small", data: { toggle: 'modal', target: '#editUserModal' } %>
               </div>
             </div>

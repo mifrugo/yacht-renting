@@ -1,0 +1,16 @@
+<div class="card text-center" style="width: 18rem;">
+  <% if locals.photos.attached? %>
+   <%= image_tag locals.photos.sample, class: 'card-img-top' %>
+  <% end %>
+  <div class="card-body">
+    <h5 class="card-title font-weight-bold"><%= locals.title %></h5>
+    <p class="card-text"><%= locals.description %></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><%= locals.price_per_day %>€ per day</li>
+    <li class="list-group-item"><%= locals.bed_space %> beds</li>
+  </ul>
+  <div class="card-body">
+    <%= link_to 'Discover it!', yacht_path(locals.id), class: 'btn btn-primary w-100' %>
+  </div>
+</div>
