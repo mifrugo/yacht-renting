@@ -49,6 +49,8 @@ class YachtsController < ApplicationController
   end
 
   def edit
+    @services = ServiceType.all
+    @equipments = EquipmentType.all
   end
 
   def destroy
