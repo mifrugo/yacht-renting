@@ -18,14 +18,10 @@ class YachtPolicy < ApplicationPolicy
   end
 
   def update?
-    #if the user is the owner of the yacht => true
-    #otherwise => false
-    #user is current_user
-    #record @yacht is (argument passed to authorize)
     user == record.user
   end
 
-  def destroy
+  def destroy?
     user == record.user
   end
 end

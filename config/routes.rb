@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     put '/users/avatar', to: 'update_users#update_avatar'
     put '/users/email', to: 'update_users#update_email'
     put '/users/password', to: 'update_users#update_password'
-    get '/users/:id/yatchs', to: 'yachts#user_list', as: :yacht_user
+    get '/users/:id/yachts', to: 'yachts#user_list', as: :yacht_user
   end
 
   devise_for :users
@@ -18,15 +18,18 @@ Rails.application.routes.draw do
   # New yacht
   get     '/yachts/new',          to: 'yachts#new'
   post    '/yachts',              to: 'yachts#create'
-  # Single yatch
-  get     '/yachts/:id',          to: 'yachts#show', as: 'yacht'
   # Book a yatch
   post    '/yachts/:id',          to: 'yachts#book'
 
   # Update listing
-  patch   '/yachts/:id',          to: 'yachts#edit'
+  patch   '/yachts/:id',          to: 'yachts#update'
+  get     '/yachts/:id/edit',     to: 'yachts#edit', as: :yacht_edit
   # Remove listing
   delete  '/yachts/:id',          to: 'yachts#destroy'
+  # Single yatch
+  get     '/yachts/:id',          to: 'yachts#show', as: 'yacht'
+
+
   # Update review
   patch   '/reviews/:id',         to: 'reviews#update'
 

@@ -1,5 +1,5 @@
 class YachtsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index show]
+  skip_before_action :authenticate_user!, only: %i[index show user_list]
   before_action :set_yacht, only: %i[show book review edit destroy]
 
   def index
@@ -50,7 +50,9 @@ class YachtsController < ApplicationController
   end
 
   def destroy
+    @yacht.destroy
 
+    redirect_to yacht_user_path(@yacht.user_id), notice: 'Yacht removed'
   end
 
   private
