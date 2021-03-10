@@ -14,8 +14,10 @@
   <body class="<%= controller_name %>-<%= action_name %>">
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
+    <%= render 'layouts/header' %>
     <div class="container my-3 bg-white p-3 rounded">
       <%= yield %>
     </div>
+    <%= render 'layouts/footer' %>
   </body>
 </html>
