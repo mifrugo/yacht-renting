@@ -1,14 +1,36 @@
-  <% @yachts.each do |yacht| %>
-     <%= @yacht.title%>
-     <%= link_to "Show", yacht_path(yacht) %>
-     <% if policy(yacht).edit? %>
-        <%= link_to "Edit", yachts_path(yacht) %>
-     <% end %>
-     <% if policy(yacht).destroy? %>
- <%= link_to "Delete", yacht method: :delete, data: { confirm:"Are you sure?"} %>
-     <% end %>
- <% end %>
+  <h2>List of all Yachts available ⚓️ </h2>
+
+  <div class="row">
+  <div class="col-sm-8">
+    <div class="card-columns">
+      <% @yachts.each do |yacht| %>
+      <%= render 'card', locals: yacht %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="index-map">
+      <label for="geocoder">Location</label>
+      <div id="geocoder" class="geocoder"></div>
+      <div style="height: 30vh" class="mb-2 position-relative">
+        <div id="map" data-apikey="<%= ENV['MAPBOX_KEY'] %>" data-latitude="12.496365"
+          data-longitude="41.902782">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
 
 <% if policy(Yacht).new? %>
-<%= link_to "Create new listing", yachts_new_path %>
+<%= link_to "Create new listing", yachts_new_path, class: "btn btn-primary" %>
 <% end %>
