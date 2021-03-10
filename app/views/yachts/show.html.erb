@@ -39,7 +39,7 @@
   <div class="col-12 col-sm-6 col-md-8">
     <div>
       <h4>Description</h4>
-      <p class="box"><%= @yacht.description %></p>
+      <p class="box"><%= @yacht.description.gsub(/\n/, '<br><br>').html_safe %></p>
     </div>
 
     <div>
@@ -113,23 +113,3 @@
   </div>
   </div>
 </div>
-
-<style>
-.box {
-  background-color: #f3f3f3;
-  width: 100%;
-  border-radius: 5px;
-  padding: 20px;
-  list-style: none;
-}
-.carousel-item img {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-}
-
-.user-info .avatar {
-  width: 80px;
-  margin: auto;
-}
-</style>
