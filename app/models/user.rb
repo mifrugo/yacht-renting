@@ -23,7 +23,7 @@ class User < ApplicationRecord
   end
 
   def full_name
-    first_name << ' ' << last_name
+    self.first_name << ' ' << self.last_name
   end
 
   def self.serialize_from_session(key, salt)

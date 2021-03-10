@@ -39,7 +39,7 @@
   <div class="col-12 col-sm-6 col-md-8">
     <div>
       <h4>Description</h4>
-      <p class="box"><%= @yacht.description.gsub(/\n/, '<br><br>').html_safe %></p>
+      <p class="box"><%= @yacht.description %></p>
     </div>
 
     <div>
@@ -73,8 +73,16 @@
 
           <div class="card-body">
             <p class="card-text">
-              <% if user_signed_in? %>
-                <%= link_to 'Book it!', "mailto:#{@user.email}?subject=I want to book your yacht&body=Hello #{@user.full_name}%0D%0A%0D%0A My name is #{current_user.first_name}, I am interested in booking your #{@yacht.title} yacht.%0D%0A Is it available from ___ to __?", class: 'btn btn-success' %>
+
+              <% if @yacht.user_id == current_user.id %>
+                <% if policy(@yacht).destroy? %>
+                  <%= link_to "update", yacht_edit_path(@yacht), class: 'badge badge-warning mt-3' %>
+                <% end %>
+                <% if policy(@yacht).update? %>
+                  <%= link_to "remove", yacht_path(@yacht), method: :delete, class: 'badge badge-danger mt-3' %>
+                <% end %>
+              <% elsif user_signed_in? %>
+                <%= link_to 'Book it!', "mailto:#{@user.email}?subject=I want to book your yacht&body=Hello #{@user.full_name} %0D%0A%0D%0A My name is #{current_user.first_name}, I am interested in booking your #{@yacht.title} yacht.%0D%0A Is it available from ___ to __?", class: 'btn btn-success' %>
               <% else %>
                  <%= link_to 'To book, you must login', new_user_session_path, class: 'btn btn-outline-danger' %>
               <% end %>
@@ -88,7 +96,7 @@
       <div class="card user-info text-center p-3 w-75 m-auto">
         <%= @user.navbar_avatar(size: 80) %>
         <div class="card-body">
-          <h5><%= @user.full_name %></h5>
+          <h5><%= @user.first_name %></h5>
           <p class="card-text">
             Joined <time class="timeago" datetime="<%= @user.created_at.iso8601 %>"></time>
           </p>
@@ -113,3 +121,23 @@
   </div>
   </div>
 </div>
+
+<style>
+.box {
+  background-color: #f3f3f3;
+  width: 100%;
+  border-radius: 5px;
+  padding: 20px;
+  list-style: none;
+}
+.carousel-item img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.user-info .avatar {
+  width: 80px;
+  margin: auto;
+}
+</style>
