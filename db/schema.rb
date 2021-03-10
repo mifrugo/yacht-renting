@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_09_154715) do
+ActiveRecord::Schema.define(version: 2021_03_10_095248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,11 +37,18 @@ ActiveRecord::Schema.define(version: 2021_03_09_154715) do
   end
 
   create_table "equipment", force: :cascade do |t|
+    t.bigint "equipment_type_id", null: false
     t.bigint "yacht_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["equipment_type_id"], name: "index_equipment_on_equipment_type_id"
+    t.index ["yacht_id"], name: "index_equipment_on_yacht_id"
+  end
+
+  create_table "equipment_types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["yacht_id"], name: "index_equipment_on_yacht_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -52,11 +59,18 @@ ActiveRecord::Schema.define(version: 2021_03_09_154715) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "services", force: :cascade do |t|
-    t.bigint "yacht_id", null: false
+  create_table "service_types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.bigint "service_type_id", null: false
+    t.bigint "yacht_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["service_type_id"], name: "index_services_on_service_type_id"
     t.index ["yacht_id"], name: "index_services_on_yacht_id"
   end
 
@@ -86,12 +100,15 @@ ActiveRecord::Schema.define(version: 2021_03_09_154715) do
     t.integer "price_per_day"
     t.integer "bed_space", default: 0
     t.bigint "user_id", null: false
+    t.string "address"
     t.index ["location_id"], name: "index_yachts_on_location_id"
     t.index ["user_id"], name: "index_yachts_on_user_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "equipment", "equipment_types"
   add_foreign_key "equipment", "yachts"
+  add_foreign_key "services", "service_types"
   add_foreign_key "services", "yachts"
   add_foreign_key "yachts", "users"
 end
