@@ -1,5 +1,7 @@
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 import MapboxGeocoder from 'mapbox-gl-geocoder/dist/mapbox-gl-geocoder.min.js'
+import 'mapbox-gl/dist/mapbox-gl.css';
+import 'mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css'
 
 let markers = []
 var map;
@@ -9,7 +11,17 @@ const clearMarkers = () => {
   markers = [];
 };
 
+const setMarker = () => {
+  const marker = new mapboxgl.Marker()
+    .setLngLat(map.getCenter())
+    .addTo(map);
+
+  markers.push(marker);
+};
+
 const renderMap = () => {
+
+  console.log('Map init');
 
   mapboxgl.accessToken = document.querySelector('#map').dataset['apikey']
 
@@ -21,11 +33,14 @@ const renderMap = () => {
     interactive: false
   });
 
+  setMarker();
 
   document.getElementById('geocoder') && setGeocoder();
 };
 
 const setGeocoder = () => {
+
+  console.log('Geocoder init')
 
   const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
@@ -43,20 +58,19 @@ const setGeocoder = () => {
   });
 
   map.on('movestart', function () {
-    document.querySelector('#send-yacht').disabled = true
+    if (document.querySelector('#send-yacht')) {
+       document.querySelector('#send-yacht').disabled = true
+    }
   })
 
   map.on('moveend', function (e) {
 
     clearMarkers();
+    setMarker();
 
-    const marker = new mapboxgl.Marker()
-      .setLngLat(map.getCenter())
-      .addTo(map);
-
-    markers.push(marker);
-
-    document.querySelector('#send-yacht').disabled = false
+    if(document.querySelector('#send-yacht')) {
+      document.querySelector('#send-yacht').disabled = false
+    }
   });
 
 };

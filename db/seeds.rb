@@ -2,6 +2,12 @@ require 'faker'
 
 puts "Cleaning your database.."
 
+LOCATIONS =  [
+  { name: 'Bari', longitude: '41.117142', latitude: '16.871872' },
+  { name: 'Marseille', longitude: '43.295021', latitude: '5.374490' },
+  { name: 'Ibiza', longitude: '38.90889', latitude: '1.43278' },
+]
+
 Equipment.destroy_all
 Service.destroy_all
 
@@ -44,20 +50,26 @@ puts "Creating your instances.."
     )
   end
 
-30.times do
+3.times do
 
-  location = Faker::Address
+  location = LOCATIONS.sample
 
   yacht = Yacht.create!(
     title: Faker::Team.name,
-    description: Faker::Lorem.paragraphs.first,
+    description: Faker::Lorem.sentence(word_count: rand(100..200)),
     user_id: User.all.sample.id,
     bed_space: rand(1..12),
-    price_per_day: rand(50..100),
-    lat: location.latitude,
-    long: location.longitude,
-    address: location.full_address
+    price_per_day: rand(5000..10000),
+    lat: location[:latitude],
+    long: location[:longitude],
+    address: location[:name],
   )
+
+  yacht.photos.attach(io: File.open(Rails.root.join('public', 'images', "yacht#{rand(1..6)}.jpeg")), filename: 'yacht.jpeg')
+
+  2.times do
+    yacht.photos.attach(io: File.open(Rails.root.join('public', 'images', 'interior', "#{rand(1..8)}.jpg")), filename: 'interior.jpeg')
+  end
 
   Equipment.create!(
     yacht: yacht,

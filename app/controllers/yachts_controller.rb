@@ -8,6 +8,7 @@ class YachtsController < ApplicationController
   end
 
   def show
+    @user = User.find(@yacht.user_id)
   end
 
   def new
