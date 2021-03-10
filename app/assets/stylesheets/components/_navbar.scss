@@ -1,6 +1,35 @@
 .navbar-yacht {
   justify-content: space-between;
-  background: white;
+  transition: background-color .3s ease-in;
+}
+
+nav.scrolled {
+  background-color: $white;
+}
+
+.navbar-brand {
+  padding: 4px 9px;
+}
+
+nav:not(.scrolled) {
+  .navbar-brand {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 16px;
+  }
+
+  span {
+    color: $black;
+  }
+}
+
+body:not(.pages-home) {
+  .navbar-yacht {
+    background-color: $white;
+  }
+
+  #content {
+    margin-top: 7rem !important;
+  }
 }
 
 .navbar-yacht .navbar-collapse {
