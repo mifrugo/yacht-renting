@@ -45,14 +45,18 @@ puts "Creating your instances.."
   end
 
 30.times do
+
+  location = Faker::Address
+
   yacht = Yacht.create!(
     title: Faker::Team.name,
     description: Faker::Lorem.paragraphs.first,
     user_id: User.all.sample.id,
     bed_space: rand(1..12),
     price_per_day: rand(50..100),
-    lat: Faker::Address.latitude,
-    long: Faker::Address.longitude
+    lat: location.latitude,
+    long: location.longitude,
+    address: location.full_address
   )
 
   Equipment.create!(

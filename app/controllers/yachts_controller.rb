@@ -1,19 +1,18 @@
 class YachtsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show user_list]
   before_action :set_yacht, only: %i[show book review edit destroy]
+  before_action :set_selections, only: %i[new edit create]
 
   def index
     @yachts = policy_scope(Yacht)
   end
 
   def show
-
   end
 
   def new
     @yacht = Yacht.new
-    @services = ServiceType.all
-    @equipments = EquipmentType.all
+
     authorize @yacht
   end
 
@@ -44,13 +43,16 @@ class YachtsController < ApplicationController
 
       redirect_to yacht_path(@yacht), notice: "Listing succesfully created!"
     else
+      @services_selected = params[:yacht][:services] || []
+      @equipments_selected = params[:yacht][:equipments] || []
+
       render :new
     end
   end
 
   def edit
-    @services = ServiceType.all
-    @equipments = EquipmentType.all
+    @services_selected = @yacht.service_types.map(&:id)
+    @equipments_selected = @yacht.equipment_types.map(&:id)
   end
 
   def destroy
@@ -61,6 +63,13 @@ class YachtsController < ApplicationController
 
   private
 
+  def set_selections
+    @services = ServiceType.all
+    @equipments = EquipmentType.all
+
+    @services_selected = @equipments_selected = []
+  end
+
   def set_yacht
     @yacht = Yacht.find(params[:id])
     authorize @yacht
@@ -68,7 +77,7 @@ class YachtsController < ApplicationController
 
   def yacht_params
     params.require(:yacht).permit(
-      :title, :description, :lat, :long, :price_per_day, :bed_space, { photos: [] }
+      :title, :description, :lat, :long, :price_per_day, :bed_space, :address, { photos: [] }
     )
   end
 

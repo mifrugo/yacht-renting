@@ -23,5 +23,7 @@ document.addEventListener('turbolinks:load', () => {
   removeAlert();
   blockDropDown();
 
+  $('.selectpicker').selectpicker();
+
   (document.body.classList.contains('yachts-new') || document.body.classList.contains('yachts-edit')) && renderMap();
 });
