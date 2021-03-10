@@ -1,0 +1,17 @@
+<h2 class="my-3 text-center"><span class="text-primary"><%= @user.first_name %>'s</span> yachts</h2>
+<% if @yachts.count.positive? %>
+  <div class="card-columns">
+    <% @yachts.each do |yacht| %>
+      <%= render 'card', locals: yacht %>
+    <% end %>
+  </div>
+<% elsif user_signed_in? && current_user.id == params[:id].to_i %>
+  <div class="w-50 my-3 mx-auto text-center">
+    <p>You still haven't added a yacht.</p>
+    <%= link_to 'Add your first yacht!', yachts_new_path, class: 'btn btn-primary' %>
+  </div>
+<% else %>
+  <div class="w-50 my-3 mx-auto text-center text-italic">
+    <p>No listings found for this user.</p>
+  </div>
+<% end %>

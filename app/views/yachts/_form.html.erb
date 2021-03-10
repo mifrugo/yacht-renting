@@ -1,0 +1,36 @@
+<%= simple_form_for(@yacht) do |f| %>
+	<div class="form-inputs">
+	<%= f.input :title,
+							required: true,
+							autofocus: true,
+							input_html: { autocomplete: "title" }%>
+		<%= f.input :description,
+								required: true,
+								input_html: { autocomplete: "description" } %>
+
+    <%= f.input :price_per_day,
+								required: true,
+								input_html: { autocomplete: "price_per_day" } %>
+
+    <%= f.input :bed_space,
+								required: true,
+								input_html: { autocomplete: "bed_space" }  %>
+
+    <%= f.input :services, collection: @services, input_html: { multiple: true, class: 'selectpicker' }, include_hidden: false, selected: @services_selected %>
+    <%= f.input :equipments, collection: @equipments, input_html: { multiple: true, class: 'selectpicker' }, include_hidden: false, selected: @equipments_selected %>
+
+    <%= f.input :lat, input_html: {class: 'd-none'}, label: false %>
+    <%= f.input :long, input_html: {class: 'd-none'}, label: false %>
+    <%= f.input :address, input_html: {class: 'd-none'}, label: false %>
+	</div>
+  <label for="geocoder">Location</label>
+  <div id="geocoder" class="geocoder"></div>
+  <div style="height: 30vh" class="mb-2 position-relative">
+    <div id="map" data-apikey="<%= ENV['MAPBOX_KEY'] %>" data-latitude="12.496365" data-longitude="41.902782"></div>
+  </div>
+
+  <%= f.input :photos, as: :file, input_html: {multiple: true} %>
+  <div class="form-actions mt-3">
+    <%= f.button :submit, "Create listing", class: 'btn btn-primary w-100', id: 'send-yacht' %>
+  </div>
+<% end %>

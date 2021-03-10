@@ -1,7 +1,7 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-light navbar-yacht">
   <%= link_to root_path, class: "navbar-brand" do %>
-    <%= image_tag 'yatch.svg' %>
-    <span>My Yatchy site</span>
+    <%= image_tag 'yacht.svg' %>
+    <span>My Yachty site</span>
   <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,33 +12,49 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-        <li class="nav-item active">
-          <%= link_to "Home", "#", class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Messages", "#", class: "nav-link" %>
-        </li>
         <li class="nav-item dropdown">
-          <%= image_tag "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Action", "#", class: "dropdown-item" %>
-            <%= link_to "Another action", "#", class: "dropdown-item" %>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          <a href="#" data-toggle="dropdown" id="navbarDropdown">
+            <%= current_user.navbar_avatar %>
+          </a>
+          <div id="user-dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <div class="dropdown-top text-center">
+              <%= current_user.navbar_avatar(size: 60) %>
+              <div class="d-block mt-2">
+                <div><%= current_user.full_name %></div>
+                <%= link_to "update profile", "#", class: "small", data: { toggle: 'modal', target: '#editUserModal' } %>
+              </div>
+            </div>
+              <%= link_to yacht_user_path(current_user), class: "dropdown-item" do %>
+                <%= image_tag 'list.svg' %> Your listings
+              <% end %>
+              <%= link_to yachts_new_path, class: "dropdown-item" do %>
+                <%= image_tag 'star.svg' %> Favorites
+              <% end %>
+            <div class="dropdown-divider"></div>
+            <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
+              <%= image_tag 'logout.svg' %> Log out
+            <% end %>
           </div>
         </li>
-      <% else %>
-        <% if controller_name != 'sessions'  %>
-          <li class="nav-item">
-            <%= link_to "Login", "#", class: "btn btn-primary", id: "btn-login", data: { toggle: 'modal', target: '#loginModal' } %>
-          </li>
+        <%= link_to yachts_new_path, class: "btn btn-outline-warning ml-2" do %>
+          <i class="fas fa-ship"></i> New yacht
         <% end %>
+      <% else %>
+        <% unless %w[sessions registrations].include? controller_name  %>
+          <li class="nav-item">
+            <%= link_to "Login", "#", class: "btn btn-primary", data: { toggle: 'modal', target: '#loginModal' } %>
+          </li>
           <li class="nav-item">
             <%= link_to 'Register', new_user_registration_path, class: "btn btn-info ml-2" %>
           </li>
+        <% end %>
       <% end %>
     </ul>
   </div>
 </div>
 
-<%= render "devise/sessions/modal" %>
-
+<% if user_signed_in? %>
+  <%= render 'devise/registrations/modal' %>
+<% else %>
+  <%= render 'devise/sessions/modal' %>
+<% end %>

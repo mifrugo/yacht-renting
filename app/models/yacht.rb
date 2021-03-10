@@ -1,7 +1,14 @@
 class Yacht < ApplicationRecord
-  belongs_to :location
+  has_many :services, dependent: :destroy
+  has_many :service_types, through: :services
 
-  validates :title, presence: true
-  validates :description, presence: true
-  validates :booking_type, presence: true
+  has_many :equipments, dependent: :destroy
+  has_many :equipment_types, through: :equipments
+
+  belongs_to :user
+
+  has_many_attached :photos
+
+  validates :title, :description, :price_per_day, :bed_space, :address, presence: true
+  validates :lat, :long, presence: { message: 'Enter a valid location' }
 end

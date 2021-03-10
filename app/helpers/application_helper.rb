@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def resource
-    @resource ||= User.new
+    @resource ||= current_user || User.new
   end
 
   def resource_class

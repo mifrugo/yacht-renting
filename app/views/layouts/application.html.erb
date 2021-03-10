@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>YatchRenting</title>
+    <title>YachtRenting</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="<%= image_path 'yacht.svg' %>" type="image/x-icon">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
 
-  <body>
+  <body class="<%= controller_name %>-<%= action_name %>">
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <%= render 'layouts/header' %>
-    <div class="container mt-3">
+    <div class="container my-3 bg-white p-3 rounded">
       <%= yield %>
     </div>
     <%= render 'layouts/footer' %>

@@ -1,12 +1,39 @@
-.navbar-lewagon {
+.navbar-yacht {
   justify-content: space-between;
   background: white;
 }
 
-.navbar-lewagon .navbar-collapse {
+.navbar-yacht .navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
+.navbar-yacht .navbar-brand img {
   width: 40px;
+}
+
+
+#user-dropdown {
+  padding-top: 0;
+  min-width: 15em;
+
+  .avatar {
+    width: 60px;
+  }
+
+  img[src$='svg'] {
+    width: 1.2em;
+    opacity: .8;
+    margin-right: 1em;
+  }
+
+  .dropdown-top {
+    background-color: $light-gray;
+    padding: 10px 0;
+    margin-bottom: 10px;
+  }
+
+  .user-update {
+    font-size: .8em;
+    color: $blue;
+  }
 }

@@ -1,0 +1,78 @@
+<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editUserModalTitle">Edit account</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+      <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" id="pills-avatar-tab" data-toggle="pill" href="#pills-avatar" role="tab" aria-controls="pills-avatar" aria-selected="true">Avatar</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="pills-email-tab" data-toggle="pill" href="#pills-email" role="tab" aria-controls="pills-email" aria-selected="false">Email</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="pills-password-tab" data-toggle="pill" href="#pills-password" role="tab" aria-controls="pills-password" aria-selected="false">Password</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-other" role="tab" aria-controls="pills-contact" aria-selected="false">Other</a>
+        </li>
+      </ul>
+
+      <div class="tab-content text-center" id="pills-tabContent">
+
+        <div class="tab-pane fade show active" id="pills-avatar" role="tabpanel" aria-labelledby="pills-home-tab">
+           <%= current_user.navbar_avatar(size: 100) %>
+           <div class="mt-4">
+            <%= simple_form_for(resource, as: resource_name, url: users_avatar_path(resource_name), html: { method: :put }) do |f| %>
+                <%= f.input :avatar, as: :file, label: false %>
+
+                <%= f.button :submit, 'Update', class: 'btn btn-info' %>
+            <% end %>
+           </div>
+        </div>
+
+        <div class="tab-pane fade" id="pills-email" role="tabpanel" aria-labelledby="pills-profile-tab">
+           <%= simple_form_for(resource, as: resource_name, url: users_email_path(resource_name), html: { method: :put }) do |f| %>
+              <%= f.input :email %>
+              <%= f.input :current_password,
+                hint: "we need your current password to confirm your changes",
+                required: true,
+                input_html: { autocomplete: "current-password" } %>
+
+              <%= f.button :submit, 'Update', class: 'btn btn-info' %>
+          <% end %>
+        </div>
+
+        <div class="tab-pane fade" id="pills-password" role="tabpanel" aria-labelledby="pills-contact-tab">
+          <%= simple_form_for(resource, as: resource_name, url: users_password_path(resource_name), html: { method: :put }) do |f| %>
+            <%= f.input :password,
+                required: true,
+                label: 'New password',
+                input_html: { autocomplete: "new-password" } %>
+            <%= f.input :password_confirmation,
+                required: true,
+                input_html: { autocomplete: "new-password" } %>
+            <%= f.input :current_password,
+                hint: "we need your current password to confirm your changes",
+                required: true,
+                input_html: { autocomplete: "current-password" } %>
+            <%= f.button :submit, 'Update', class: 'btn btn-info' %>
+          <% end %>
+        </div>
+
+        <div class="tab-pane fade" id="pills-other" role="tabpanel" aria-labelledby="pills-contact-tab">
+         <%= link_to "Remove my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-outline-danger' %>
+
+        </div>
+      </div>
+
+      </div>
+    </div>
+  </div>
+</div>
