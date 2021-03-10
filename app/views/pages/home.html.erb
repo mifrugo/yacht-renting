@@ -1,21 +1,2 @@
-<div class="jumbotron" id="yacht-banner">
-  <div class="yacht-banner-content">
-    <h1 class="display-4">Rent Yachtes</h1>
-    <p class="lead">We help you get what you need 😎🍹</p>
-    <hr class="my-4">
-    <p>Join our community and get in touch with thousands of Yachts' renters.</p>
-    <p class="lead">
-    <%= button_to 'Sign Up', new_user_session_path, class: 'btn btn-info ml-2 #{button}' %>
-    </p>
-  </div>
-</div>
-
-<h2>Hot Yachts 🔥</h2>
-<div class="card">
-<% @yachts.first(5).each do |yacht| %>
-  <div class="card-body">
-  <h3><%= yacht.title %></h2>
-  <h6><%= yacht.description %></h5>
-  </div>
-<% end %>
-</div>
+<%= render 'layouts/carousel' %>
+<%= render 'layouts/hotplaces' %>

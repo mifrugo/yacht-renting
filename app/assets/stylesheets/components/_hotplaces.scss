@@ -1,0 +1,22 @@
+.locations-container {
+    margin: auto;
+    width: 70%;
+    padding: 10px;
+    margin-top: 25px;
+      > h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .my-img:hover {
+        border: solid 1px black;
+        background-color: coral;
+        transition: background-color 2s;
+      }
+      .my-img {
+        background-color:#ffc759;
+        > p {
+          color: black;
+          text-shadow: 1px 1px white;  
+        }
+      }
+}
