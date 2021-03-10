@@ -30,7 +30,6 @@ const renderMap = () => {
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [document.querySelector('#map').dataset['latitude'], document.querySelector('#map').dataset['longitude']],
     zoom: 12,
-    interactive: false
   });
 
   setMarker();
@@ -52,6 +51,10 @@ const setGeocoder = () => {
   geocoder.on('result', function (ev) {
     const styleSpec = ev.result;
 
+    clearMarkers();
+    setMarker();
+    console.log('Updating ...')
+
     document.querySelector('#yacht_lat').value = styleSpec.center[0]
     document.querySelector('#yacht_long').value = styleSpec.center[1]
     document.querySelector('#yacht_address').value = styleSpec.place_name
@@ -64,10 +67,6 @@ const setGeocoder = () => {
   })
 
   map.on('moveend', function (e) {
-
-    clearMarkers();
-    setMarker();
-
     if(document.querySelector('#send-yacht')) {
       document.querySelector('#send-yacht').disabled = false
     }

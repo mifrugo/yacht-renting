@@ -21,6 +21,14 @@ class YachtPolicy < ApplicationPolicy
     user == record.user
   end
 
+  def favorite?
+    true
+  end
+
+  def user_favorite?
+    true
+  end
+
   def destroy?
     user == record.user
   end

@@ -25,12 +25,12 @@
 	</div>
   <label for="geocoder">Location</label>
   <div id="geocoder" class="geocoder"></div>
-  <div style="height: 30vh" class="mb-2 position-relative">
+  <div style="height: 30vh" class="mb-4 position-relative">
     <div id="map" data-apikey="<%= ENV['MAPBOX_KEY'] %>" data-latitude="12.496365" data-longitude="41.902782"></div>
   </div>
 
   <%= f.input :photos, as: :file, input_html: {multiple: true} %>
   <div class="form-actions mt-3">
-    <%= f.button :submit, "Create listing", class: 'btn btn-primary w-100', id: 'send-yacht' %>
+    <%= f.button :submit, "Create y", class: 'btn btn-primary w-100', id: 'send-yacht' %>
   </div>
 <% end %>

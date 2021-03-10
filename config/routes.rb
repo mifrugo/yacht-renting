@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     put '/users/email', to: 'update_users#update_email'
     put '/users/password', to: 'update_users#update_password'
     get '/users/:id/yachts', to: 'yachts#user_list', as: :yacht_user
+    get '/users/favorite', to: 'yachts#user_favorite'
   end
 
   devise_for :users
@@ -20,6 +21,9 @@ Rails.application.routes.draw do
   post    '/yachts',              to: 'yachts#create'
   # Book a yatch
   post    '/yachts/:id',          to: 'yachts#book'
+
+  # Add to favorite
+  post    '/yachts/:id/favorite',  to: 'favorites#add', as: :user_favorite
 
   # Update listing
   patch   '/yachts/:id',          to: 'yachts#update'
@@ -36,7 +40,7 @@ Rails.application.routes.draw do
   # Add to favorite
   #post    '/yatchs/:id/favorite', to: 'favorite#add'
   # Delete favorite
-  #delete '/favorites/:id',       to: 'favorites#destroy'
+  delete '/favorites/:id',       to: 'favorites#destroy', as: :favorite
 
   # Conversations list
   #get '/messages',               to: 'messages#list'

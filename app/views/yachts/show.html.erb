@@ -73,7 +73,6 @@
 
           <div class="card-body">
             <p class="card-text">
-
               <% if @yacht.user_id == current_user.id %>
                 <% if policy(@yacht).destroy? %>
                   <%= link_to "update", yacht_edit_path(@yacht), class: 'badge badge-warning mt-3' %>
@@ -106,6 +105,16 @@
         </div>
       </div>
     </div>
+
+    <% if user_signed_in? %>
+      <div class="text-center mt-4">
+      <% if @favorite %>
+        <%= link_to 'Remove from favorites', favorite_path(@favorite), class: 'btn btn-outline-danger', method: :delete %>
+      <% else %>
+        <%= link_to 'Add to favorites!', user_favorite_path(@yacht), class: 'btn btn-success', method: :post %>
+      <% end %>
+      </div>
+    <% end %>
 
   </div>
 
