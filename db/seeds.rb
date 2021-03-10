@@ -35,13 +35,20 @@ puts "Creating your instances.."
     EquipmentType.create!(name: k)
   end
 
-  User.create!(first_name: 'Michele', last_name: 'Frugoli', email: 'michele@frugo.li', password: 'ciaobello')
+  5.times do
+    User.create!(
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name,
+      email: Faker::Internet.email,
+      password: 'helloworld'
+    )
+  end
 
 30.times do
   yacht = Yacht.create!(
     title: Faker::Team.name,
     description: Faker::Lorem.paragraphs.first,
-    user_id: 1,
+    user_id: User.all.sample.id,
     bed_space: rand(1..12),
     price_per_day: rand(50..100),
     lat: Faker::Address.latitude,
