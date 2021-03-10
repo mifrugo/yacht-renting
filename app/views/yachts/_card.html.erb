@@ -1,10 +1,14 @@
-<div class="card text-center" style="max-width: 18rem;">
+<div class="card text-center card-yacht" style="max-width: 18rem;">
   <% if locals.photos.attached? %>
    <%= image_tag locals.photos.sample, class: 'card-img-top' %>
   <% end %>
   <div class="card-body">
     <h5 class="card-title font-weight-bold"><%= locals.title %></h5>
-    <p class="card-text"><%= locals.description %></p>
+    <p class="card-text">
+    <%=
+      locals.description = locals.description.length > 300 ? locals.description[0..200] << '...' : locals.description
+    %>
+    </p>
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item"><%= locals.price_per_day %>€ per day</li>

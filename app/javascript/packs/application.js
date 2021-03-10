@@ -16,12 +16,15 @@ window.$ = $;
 import { removeAlert } from '../components/init_removeAlert'
 import { renderMap } from '../components/init_mapNewListing'
 import { initTimeAgo } from '../components/init_timeago'
+import { navBar } from '../components/init_navbar'
 
 import 'bootstrap-select/dist/js/bootstrap-select.min.js';
 
 document.addEventListener('turbolinks:load', () => {
   removeAlert();
   initTimeAgo();
+
+  navBar();
 
   $('.selectpicker').selectpicker();
 
