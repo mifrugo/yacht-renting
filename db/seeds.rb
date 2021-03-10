@@ -50,7 +50,7 @@ puts "Creating your instances.."
     )
   end
 
-30.times do
+5.times do
 
   location = LOCATIONS.sample
 

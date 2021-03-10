@@ -73,7 +73,11 @@
 
           <div class="card-body">
             <p class="card-text">
-              <%= link_to 'Book it!', "mailto:#{@user.email}?subject=I want to book your yacht&body=Hello #{@user.full_name}%0D%0A%0D%0A My name is #{current_user.first_name}, I am interested in booking your #{@yacht.title} yacht.%0D%0A Is it available from ___ to __?", class: 'btn btn-success' %>
+              <% if user_signed_in? %>
+                <%= link_to 'Book it!', "mailto:#{@user.email}?subject=I want to book your yacht&body=Hello #{@user.full_name}%0D%0A%0D%0A My name is #{current_user.first_name}, I am interested in booking your #{@yacht.title} yacht.%0D%0A Is it available from ___ to __?", class: 'btn btn-success' %>
+              <% else %>
+                 <%= link_to 'To book, you must login', new_user_session_path, class: 'btn btn-outline-danger' %>
+              <% end %>
             </p>
         </div>
       </div>
