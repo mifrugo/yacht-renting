@@ -1,31 +1,30 @@
-<%
-  indicators = ""
-  divs = ""
-%>
+<%indicators = ""
+divs = "" %>
 <h2 id="trend-title">Yachts on trend 🔥</h2>
 <div class="carousel-container">
   <% @yachts.first(3).each.with_index do |yacht, index| %>
     <% active = index == 0? "active" : ""
-
+    
     indicators += <<-HTML
       <li data-target="#carouselExampleIndicators" data-slide-to="#{index}" class="#{active}"></li>
     HTML
     divs += <<-HTML
-      <div class="carousel-item #{active}" onclick="location.href='#{yacht_path yacht}'">
-        #{cl_image_tag yacht.photos.first.key, height: 500, class: 'd-block w-100'}
+      <div class="carousel-item #{active}">
+        <img class="d-block w-100" src="https://www.ferretti-yachts.com/uploadB2B//models/images/photogallery/ferretti/medium/41298.jpg" alt="First slide">
         <div class="carousel-caption d-none d-md-block">
           <div class="carousel-content">
             <h5>#{yacht.title}</h5>
+            <p>#{yacht.description}</p>
           </div>
         </div>
       </div>
     HTML
-    %>
+    %> 
 <% end %>
 
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
-    <%= indicators.html_safe %>
+    <%= indicators.html_safe %> 
   </ol>
   <div class="carousel-inner">
     <%= divs.html_safe %>
