@@ -3,37 +3,24 @@
 </div>
 
 <div class="container-steps">
-
-  <% if user_signed_in? %>
-    <%= link_to yachts_new_path, class: 'step-item' do %>
-      <i class="fas fa-user-plus iconDetails"></i>
-      <div class="icon-steps">
-        <h4>Add</h4>
-      </div>
-    <% end %>
-  <% else %>
-    <%= link_to new_user_registration_path, class: 'step-item' do %>
-      <i class="fas fa-user-plus iconDetails"></i>
-      <div class="icon-steps">
-        <h4>Register</h4>
-      </div>
-    <% end %>
-  <% end %>
-
-  <%= link_to yachts_path, class: 'step-item' do %>
+  <div class="step-item"> 
+	<i class="fas fa-user-plus iconDetails"></i>	
+	<div class="icon-steps">
+	  <h4>Register</h4>
+	</div>
+  </div>
+  <div class="step-item">
     <i class="fas fa-ship iconDetails"></i>
     <div class="icon-steps">
-	    <h4>Choose</h4>
-	  </div>
-  <% end %>
-
-  <%= link_to yacht_user_path(current_user || 1), class: 'step-item' do %>
+	  <h4>Choose</h4>
+	</div>
+  </div>
+  <div class="step-item">   
     <i class="fas fa-anchor iconDetails"></i>
-	  <div class="icon-steps">
-	    <h4>Ready? sail!</h4>
-	  </div>
-  <% end %>
-
+	<div class="icon-steps">
+	  <h4>Ready? sail!</h4>
+	</div>
+</div>
 </div>
 
 

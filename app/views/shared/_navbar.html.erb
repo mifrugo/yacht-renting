@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-yacht fixed-top">
+<div class="navbar navbar-expand-sm navbar-light navbar-yacht">
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag 'yacht.svg' %>
     <span>My Yachty site</span>
@@ -36,7 +36,7 @@
             <% end %>
           </div>
         </li>
-        <%= link_to yachts_new_path, class: "btn btn-warning ml-2" do %>
+        <%= link_to yachts_new_path, class: "btn btn-outline-warning ml-2" do %>
           <i class="fas fa-ship"></i> New yacht
         <% end %>
       <% else %>
@@ -51,7 +51,7 @@
       <% end %>
     </ul>
   </div>
-</nav>
+</div>
 
 <% if user_signed_in? %>
   <%= render 'devise/registrations/modal' %>

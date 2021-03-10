@@ -1,13 +1,11 @@
 <div class="jumbotron jumbotron-fluid pt-0 pb-4 d-flex align-items-center center-banner">
   <div class="container text-white d-none">
-    <h1 class="display-4" id="title">Rent Yachts</h1>
-    <p class="lead">We help you get what you need 😎🍹⛴</p>
-    <% unless user_signed_in? %>
-      <hr class="my-4">
-      <p>Join our community and get in touch with thousands of Yachts' renters.</p>
-      <p class="lead">
-      <%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-info ml-20" %>
-      </p>
-    <% end %>
+    <h1 class="display-4" id="title">Rent Yachtes</h1>
+    <p class="lead">We help you get what you need 😎🍹</p>
+    <hr class="my-4">
+    <p>Join our community and get in touch with thousands of Yachts' renters.</p>
+    <p class="lead">
+    <%= button_to 'Sign Up', new_user_session_path, class: "btn btn-info ml-20" %>
+    </p>
   </div>
 </div>
