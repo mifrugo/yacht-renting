@@ -22,7 +22,7 @@
       <%= render 'layouts/header' %>
     <% end %>
 
-    <div class="container my-3 bg-white p-3 rounded" id="content">
+    <div class="container my-3 bg-white p-3 rounded" id="content" style="max-width: 90%">
       <%= yield %>
     </div>
     <% if controller_name == 'pages' && action_name == 'home' %>
