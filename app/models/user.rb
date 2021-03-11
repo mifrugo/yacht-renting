@@ -12,6 +12,9 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many :yachts, dependent: :destroy
 
+  has_many :favorites
+  has_many :favorite_yachts, through: :favorites, source: :yacht
+
   after_save :wipe_cache
 
   def first_name=(val)
@@ -23,7 +26,7 @@ class User < ApplicationRecord
   end
 
   def full_name
-    self.first_name << ' ' << self.last_name
+    first_name << ' ' << last_name
   end
 
   def self.serialize_from_session(key, salt)

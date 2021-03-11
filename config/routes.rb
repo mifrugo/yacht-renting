@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   # Book a yatch
   post    '/yachts/:id',          to: 'yachts#book'
 
+  # Add to favorite
+  post    '/yachts/:id/favorite',  to: 'favorites#add', as: :user_favorite
+
   # Update listing
   patch   '/yachts/:id',          to: 'yachts#update'
   get     '/yachts/:id/edit',     to: 'yachts#edit', as: :yacht_edit
@@ -35,8 +38,9 @@ Rails.application.routes.draw do
 
   # Add to favorite
   #post    '/yatchs/:id/favorite', to: 'favorite#add'
+  get '/favorites',             to: 'yachts#user_favorite', as: :users_favorite
   # Delete favorite
-  #delete '/favorites/:id',       to: 'favorites#destroy'
+  delete '/favorites/:id',       to: 'favorites#destroy', as: :favorite
 
   # Conversations list
   #get '/messages',               to: 'messages#list'

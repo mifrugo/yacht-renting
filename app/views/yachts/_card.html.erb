@@ -1,18 +1,23 @@
-<div class="card text-center card-yacht" style="max-width: 18rem;">
+<div class="card text-center card-yacht">
+<% if action_name == 'user_favorite' %>
+  <%= link_to  favorite_path(current_user.favorites.find { |f| f.yacht_id == locals.id }), class: 'remove-favorite', method: :delete do %>
+    <i class="fas fa-times"></i>
+  <% end %>
+<% end %>
   <% if locals.photos.attached? %>
-   <%= image_tag locals.photos.sample, class: 'card-img-top' %>
+   <%= image_tag locals.photos.sample, class: 'card-img-top', height: 190 %>
   <% end %>
   <div class="card-body">
     <h5 class="card-title font-weight-bold"><%= locals.title %></h5>
-    <p class="card-text">
+    <p class="card-text d-none">
     <%=
       locals.description = locals.description.length > 300 ? locals.description[0..200] << '...' : locals.description
     %>
     </p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item"><%= locals.price_per_day %>€ per day</li>
-    <li class="list-group-item"><%= locals.bed_space %> beds</li>
+    <li class="list-group-item"><strong><%= locals.price_per_day %>€</strong> per day</li>
+    <li class="list-group-item"><strong><%= locals.bed_space %></strong> beds</li>
   </ul>
   <div class="card-body">
     <%= link_to 'Discover it!', yacht_path(locals.id), class: 'btn btn-primary w-100' %>
