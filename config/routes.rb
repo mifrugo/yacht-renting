@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   
   # Book a yatch
   post    '/bookings/yacht/:id',  to: 'bookings#create', as: :yacht_bookings
+  
 
   # Add to favorite
   post    '/yachts/:id/favorite',  to: 'favorites#add', as: :user_favorite
