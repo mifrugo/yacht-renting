@@ -18,8 +18,12 @@ Rails.application.routes.draw do
   # New yacht
   get     '/yachts/new',          to: 'yachts#new'
   post    '/yachts',              to: 'yachts#create'
+
+  
   # Book a yatch
-  post    '/yachts/:id',          to: 'yachts#book'
+  post    '/bookings/yacht/:id',  to: 'bookings#create', as: :yacht_bookings
+  get     '/bookings',            to: 'yachts#user_bookings', as: :users_bookings
+  
 
   get     '/yachts/search',       to: 'yachts#search'
 
@@ -36,7 +40,9 @@ Rails.application.routes.draw do
 
 
   # Update review
-  patch   '/reviews/:id',         to: 'reviews#update'
+
+  post    '/reviews/:yacht_id',    to: 'reviews#create', as: :yacht_reviews
+  delete  '/reviews/:id',          to: 'reviews#destroy', as: :review_delete
 
   # Add to favorite
   #post    '/yatchs/:id/favorite', to: 'favorite#add'

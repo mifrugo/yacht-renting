@@ -1,0 +1,13 @@
+<div class="card text-center card-yacht">
+  <% if locals.yacht.photos.attached? %>
+   <%= image_tag locals.yacht.photos.sample, class: 'card-img-top', height: 190 %>
+  <% end %>
+  <div class="card-body">
+    <h5 class="card-title font-weight-bold"><%= locals.yacht.title %></h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Total: <strong><%= number_with_delimiter(locals.price.round) %>€</strong></li>
+    <li class="list-group-item">From: <strong><%= locals.from.strftime("#{locals.from.day.ordinalize} of %B, %Y") %></strong></li>
+    <li class="list-group-item">To: <strong><%= locals.to.strftime("#{locals.to.day.ordinalize} of %B, %Y") %></strong></li>
+  </ul>
+</div>

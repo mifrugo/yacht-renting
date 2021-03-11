@@ -10,15 +10,15 @@ class YachtsController < ApplicationController
   def show
     @user = User.find(@yacht.user_id)
     @favorite = current_user.favorites.find { |f| f.yacht_id == @yacht.id } || nil
+    @review = Review.new
+    @booking = Booking.new
+
   end
 
   def new
     @yacht = Yacht.new
 
     authorize @yacht
-  end
-
-  def book
   end
 
   def review
@@ -85,6 +85,15 @@ class YachtsController < ApplicationController
     redirect_to yacht_user_path(@yacht.user_id), notice: 'Yacht removed'
   end
 
+
+  def user_bookings
+    @yachts = current_user.bookings
+    @past = current_user.bookings.past
+    @upcoming = current_user.bookings.upcoming
+
+    authorize @yachts
+  end
+  
   private
 
   def set_selections

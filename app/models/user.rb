@@ -14,14 +14,10 @@ class User < ApplicationRecord
 
   has_many :favorites
   has_many :favorite_yachts, through: :favorites, source: :yacht
-<<<<<<< Updated upstream
-=======
-
+  
   has_many :bookings
-  has_many :booked_yachts, through: :yachts, source: :booking
 
   has_many :reviews, dependent: :destroy
->>>>>>> Stashed changes
 
   after_save :wipe_cache
 
@@ -54,6 +50,7 @@ class User < ApplicationRecord
       lavatar_tag(first_name[0] << last_name[0], size, { class: 'avatar' })
     end
   end
+
 
   private
 
