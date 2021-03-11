@@ -1,0 +1,12 @@
+<h2 class="my-3 text-center"><span class="text-primary">Search for <span class="badge badge-primary align-top"><%= params[:query] %></span></h2>
+<% if @yachts.count.positive? %>
+  <div class="card-columns text-center">
+    <% @yachts.each do |yacht| %>
+      <%= render 'card', locals: yacht %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="w-50 my-3 mx-auto text-center text-italic">
+    <p>No results found. 😢</p>
+  </div>
+<% end %>

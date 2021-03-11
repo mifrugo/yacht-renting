@@ -25,6 +25,10 @@ class YachtPolicy < ApplicationPolicy
     true
   end
 
+  def search?
+    true
+  end
+
   def user_favorite?
     true
   end
