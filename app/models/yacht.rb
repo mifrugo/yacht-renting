@@ -1,5 +1,5 @@
 class Yacht < ApplicationRecord
-  # include PgSearch::Model
+  include PgSearch::Model
 
   has_many :services, dependent: :destroy
   has_many :service_types, through: :services
