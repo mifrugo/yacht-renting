@@ -12,6 +12,7 @@ class YachtsController < ApplicationController
     @favorite = current_user.favorites.find { |f| f.yacht_id == @yacht.id } || nil
     @review = Review.new
     @booking = Booking.new
+
   end
 
   def new
@@ -77,6 +78,8 @@ class YachtsController < ApplicationController
 
     redirect_to yacht_user_path(@yacht.user_id), notice: 'Yacht removed'
   end
+
+
 
   private
 
