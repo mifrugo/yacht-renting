@@ -43,6 +43,7 @@
       <p class="box"><%= @yacht.description %></p>
     </div>
 
+    <% if @yacht.service_types.present? %>
     <div>
       <h4>Services</h4>
       <ul class="box">
@@ -51,7 +52,9 @@
         <% end %>
       </ul>
     </div>
+    <% end %>
 
+    <% if @yacht.equipment_types.present? %>
     <div>
       <h4>Equipments</h4>
       <ul class="box">
@@ -60,6 +63,7 @@
         <% end %>
       </ul>
     </div>
+    <% end %>
 
   </div>
 
@@ -82,7 +86,18 @@
                   <%= link_to "Remove", yacht_path(@yacht), method: :delete, class: 'btn btn-outline-danger' %>
                 <% end %>
               <% elsif user_signed_in? %>
-                <%= link_to 'Book it!', "mailto:#{@user.email}?subject=I want to book your yacht&body=Hello #{@user.full_name} %0D%0A%0D%0A My name is #{current_user.first_name}, I am interested in booking your #{@yacht.title} yacht.%0D%0A Is it available from ___ to __?", class: 'btn btn-success' %>
+                <%= simple_form_for([ @yacht, @booking ]) do |f| %>
+                  <%= f.input :from, as: :date,
+                            html5: true,
+                            required: true,
+                            autofocus: true,
+                            input_html: { autocomplete: "title" }%>
+                  <%= f.input :to, as: :date,
+                          html5: true,
+                              required: true,
+                              input_html: { autocomplete: "description" } %>
+                  <%= f.button :submit, "Book yacht!", class: 'btn btn-primary w-100'%>    
+                <% end %>         
               <% else %>
                  <%= link_to 'To book, you must login', new_user_session_path, class: 'btn btn-outline-danger' %>
               <% end %>

@@ -18,8 +18,13 @@ Rails.application.routes.draw do
   # New yacht
   get     '/yachts/new',          to: 'yachts#new'
   post    '/yachts',              to: 'yachts#create'
+
+  
   # Book a yatch
-  post    '/yachts/:id',          to: 'yachts#book'
+  post    '/bookings/yacht/:id',  to: 'bookings#create', as: :yacht_bookings
+  
+
+  get     '/yachts/search',       to: 'yachts#search'
 
   # Add to favorite
   post    '/yachts/:id/favorite',  to: 'favorites#add', as: :user_favorite

@@ -11,6 +11,7 @@ class YachtsController < ApplicationController
     @user = User.find(@yacht.user_id)
     @favorite = current_user.favorites.find { |f| f.yacht_id == @yacht.id } || nil
     @review = Review.new
+    @booking = Booking.new
   end
 
   def new
@@ -19,10 +20,18 @@ class YachtsController < ApplicationController
     authorize @yacht
   end
 
-  def book
+  def review
   end
 
-  def review
+  def search
+    if params[:query].present?
+      @yachts = Yacht.search_name_and_description(params[:query])
+    else
+      @yachts = Yacht.all
+      render :index
+    end
+
+    authorize @yachts
   end
 
   def user_favorite

@@ -36,6 +36,18 @@ ActiveRecord::Schema.define(version: 2021_03_11_110151) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "bookings", force: :cascade do |t|
+    t.float "price"
+    t.date "from"
+    t.date "to"
+    t.bigint "yacht_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+    t.index ["yacht_id"], name: "index_bookings_on_yacht_id"
+  end
+
   create_table "equipment", force: :cascade do |t|
     t.bigint "equipment_type_id", null: false
     t.bigint "yacht_id", null: false
@@ -125,6 +137,8 @@ ActiveRecord::Schema.define(version: 2021_03_11_110151) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "bookings", "yachts"
   add_foreign_key "equipment", "equipment_types"
   add_foreign_key "equipment", "yachts"
   add_foreign_key "favorites", "users"

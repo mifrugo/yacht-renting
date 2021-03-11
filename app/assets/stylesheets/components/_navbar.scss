@@ -47,6 +47,7 @@ body:not(.pages-home) {
 
   .avatar {
     width: 60px;
+    height: 60px;
   }
 
   img[src$='svg'] {
@@ -64,5 +65,26 @@ body:not(.pages-home) {
   .user-update {
     font-size: .8em;
     color: $blue;
+  }
+}
+
+.pages-home {
+  nav:not(.scrolled) {
+    #search-div {
+      display: none;
+    }
+  }
+}
+
+#search-div {
+  .form-group {
+    position: relative;
+
+    i {
+      position: absolute;
+      right: 26px;
+      top: 12px;
+      color: $gray;
+    }
   }
 }
