@@ -33,6 +33,10 @@ class YachtPolicy < ApplicationPolicy
     true
   end
 
+  def user_bookings?
+    true
+  end  
+
   def destroy?
     user == record.user
   end

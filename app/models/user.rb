@@ -52,6 +52,7 @@ class User < ApplicationRecord
     end
   end
 
+
   private
 
   def wipe_cache

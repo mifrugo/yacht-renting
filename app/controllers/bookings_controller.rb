@@ -31,5 +31,6 @@ class BookingsController < ApplicationController
 
   def set_price
     @yacht.price_per_day * (Date.parse(params[:booking][:to]) - Date.parse(params[:booking][:from])).to_i
-  end  
+  end 
+
 end    

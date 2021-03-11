@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   
   # Book a yatch
   post    '/bookings/yacht/:id',  to: 'bookings#create', as: :yacht_bookings
+  get     '/bookings',            to: 'yachts#user_bookings', as: :users_bookings
   
 
   get     '/yachts/search',       to: 'yachts#search'

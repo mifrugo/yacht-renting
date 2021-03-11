@@ -86,7 +86,14 @@ class YachtsController < ApplicationController
   end
 
 
+  def user_bookings
+    @yachts = current_user.bookings
+    @past = current_user.bookings.past
+    @upcoming = current_user.bookings.upcoming
 
+    authorize @yachts
+  end
+  
   private
 
   def set_selections
