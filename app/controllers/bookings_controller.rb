@@ -3,6 +3,7 @@ class BookingsController < ApplicationController
   before_action :dates_params, only: %i[create]
   before_action :check_dates, only: %i[create]
   before_action :check_booked, only: %i[create]
+  before_action :single_booking, only: %i[single_order]
 
   def create
     @booking = Booking.new(booking_params)
@@ -12,13 +13,41 @@ class BookingsController < ApplicationController
     @booking.save
     authorize @booking
 
-    redirect_back fallback_location: yacht_path(@yacht), notice: 'Booked!'
+    set_payment
+
+    redirect_to booking_checkout_path(@booking), notice: 'Yacht booked 🎉'
   end
 
-  def destroy
+  def user_bookings
+    @yachts = current_user.bookings
+    @past = current_user.bookings.past
+    @upcoming = current_user.bookings.upcoming
+
+    authorize @yachts
   end
 
   private
+
+  def single_booking
+    @booking = current_user.bookings.find(params[:id])
+    authorize @booking
+  end
+
+  def set_payment
+    session = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      line_items: [{
+        name: @yacht.title, amount: @booking.price.to_i,
+        images: [
+          Cloudinary::Utils.cloudinary_url(@yacht.photos.first.key)
+        ], currency: 'eur', quantity: 1
+      }],
+      success_url: booking_checkout_url(@booking),
+      cancel_url: booking_checkout_url(@booking)
+    )
+
+    @booking.update(checkout_id: session.id)
+  end
 
   def booking_params
     params.require(:booking).permit(:from, :to)

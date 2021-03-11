@@ -3,11 +3,19 @@
    <%= image_tag locals.yacht.photos.sample, class: 'card-img-top', height: 190 %>
   <% end %>
   <div class="card-body">
-    <h5 class="card-title font-weight-bold"><%= locals.yacht.title %></h5>
+    <h4 class="card-title font-weight-bold mb-0"><%= locals.yacht.title %></h4>
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">Total: <strong><%= number_with_delimiter(locals.price.round) %>€</strong></li>
     <li class="list-group-item">From: <strong><%= locals.from.strftime("#{locals.from.day.ordinalize} of %B, %Y") %></strong></li>
     <li class="list-group-item">To: <strong><%= locals.to.strftime("#{locals.to.day.ordinalize} of %B, %Y") %></strong></li>
+    <% if action_name == 'user_bookings' %>
+      <% if locals.payment_status == 'pending' %>
+        <%= link_to "Complete payment", booking_checkout_path(locals), class: 'btn btn-danger w-75 my-3 mx-auto' %>
+      <% else %>
+        <%= link_to "Paid", booking_checkout_path(locals), class: 'btn btn-success w-75 my-3 mx-auto' %>
+      <% end %>
+
+    <% end %>
   </ul>
 </div>

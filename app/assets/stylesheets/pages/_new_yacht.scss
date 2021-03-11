@@ -12,10 +12,17 @@
   }
 }
 
-.card-yacht {
+body:not(.bookings-single_order) .card-yacht {
   position: relative;
   max-width: 18rem;
 }
+
+.card-yacht {
+  .card-img-top {
+    object-fit: cover;
+  }
+}
+
 .remove-favorite {
       position: absolute;
     right: -12px;

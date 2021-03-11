@@ -9,7 +9,7 @@ class YachtsController < ApplicationController
 
   def show
     @user = User.find(@yacht.user_id)
-    @favorite = current_user.favorites.find { |f| f.yacht_id == @yacht.id } || nil
+    @favorite = current_user.favorites.find { |f| f.yacht_id == @yacht.id } if user_signed_in?
     @review = Review.new
     @booking = Booking.new
 
@@ -85,15 +85,6 @@ class YachtsController < ApplicationController
     redirect_to yacht_user_path(@yacht.user_id), notice: 'Yacht removed'
   end
 
-
-  def user_bookings
-    @yachts = current_user.bookings
-    @past = current_user.bookings.past
-    @upcoming = current_user.bookings.upcoming
-
-    authorize @yachts
-  end
-  
   private
 
   def set_selections

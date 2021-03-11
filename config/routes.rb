@@ -19,11 +19,13 @@ Rails.application.routes.draw do
   get     '/yachts/new',          to: 'yachts#new'
   post    '/yachts',              to: 'yachts#create'
 
-  
+
   # Book a yatch
   post    '/bookings/yacht/:id',  to: 'bookings#create', as: :yacht_bookings
-  get     '/bookings',            to: 'yachts#user_bookings', as: :users_bookings
-  
+  get     '/bookings',            to: 'bookings#user_bookings', as: :users_bookings
+  get     '/bookings/:id',        to: 'bookings#single_order', as: :booking_checkout
+  mount StripeEvent::Engine,      at: '/payments-webhook'
+
 
   get     '/yachts/search',       to: 'yachts#search'
 
