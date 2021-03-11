@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     put '/users/email', to: 'update_users#update_email'
     put '/users/password', to: 'update_users#update_password'
     get '/users/:id/yachts', to: 'yachts#user_list', as: :yacht_user
-    get '/users/favorite', to: 'yachts#user_favorite'
   end
 
   devise_for :users
@@ -39,6 +38,7 @@ Rails.application.routes.draw do
 
   # Add to favorite
   #post    '/yatchs/:id/favorite', to: 'favorite#add'
+  get '/favorites',             to: 'yachts#user_favorite', as: :users_favorite
   # Delete favorite
   delete '/favorites/:id',       to: 'favorites#destroy', as: :favorite
 
