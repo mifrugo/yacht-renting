@@ -44,7 +44,21 @@
 }
 
 
+#photos img {
+  margin: 0 5px;
+}
 
+#photos {
+  min-height: 110px;
+  background: #f4f4f4;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 10px;
+  border: 1px dashed gray;
+}
 
+.yacht_long, .yacht_lat, .yacht_address {
+  display: none;
+}
 
 

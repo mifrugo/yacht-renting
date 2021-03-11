@@ -7,17 +7,26 @@
 		<%= f.input :description,
 								required: true,
 								input_html: { autocomplete: "description" } %>
-
-    <%= f.input :price_per_day,
-								required: true,
-								input_html: { autocomplete: "price_per_day" } %>
-
-    <%= f.input :bed_space,
-								required: true,
-								input_html: { autocomplete: "bed_space" }  %>
-
-    <%= f.input :services, collection: @services, input_html: { multiple: true, class: 'selectpicker' }, include_hidden: false, selected: @services_selected %>
-    <%= f.input :equipments, collection: @equipments, input_html: { multiple: true, class: 'selectpicker' }, include_hidden: false, selected: @equipments_selected %>
+    <div class="row">
+      <div class="col-6">
+        <%= f.input :price_per_day,
+                    required: true, min: 0,
+                    input_html: { autocomplete: "price_per_day" } %>
+      </div>
+      <div class="col-6">
+        <%= f.input :bed_space,
+                    required: true,
+                    input_html: { autocomplete: "bed_space" }  %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <%= f.input :services, collection: @services, input_html: { multiple: true, class: 'selectpicker' }, include_hidden: false, selected: @services_selected %>
+      </div>
+      <div class="col-6">
+        <%= f.input :equipments, collection: @equipments, input_html: { multiple: true, class: 'selectpicker' }, include_hidden: false, selected: @equipments_selected %>
+    </div>
+  </div>
 
     <%= f.input :lat, input_html: {class: 'd-none'}, label: false %>
     <%= f.input :long, input_html: {class: 'd-none'}, label: false %>
@@ -29,8 +38,49 @@
     <div id="map" data-apikey="<%= ENV['MAPBOX_KEY'] %>" data-latitude="12.496365" data-longitude="41.902782"></div>
   </div>
 
-  <%= f.input :photos, as: :file, input_html: {multiple: true} %>
+  <%= f.input :photos, as: :file, input_html: {multiple: true, accept: 'image/*', class: 'd-none'} %>
+  <div id="photos" class="mx-auto text-center">
+    <span>Click here to upload your files</span>
+  </div>
   <div class="form-actions mt-3">
     <%= f.button :submit, "Create yacht!", class: 'btn btn-primary w-100', id: 'send-yacht' %>
   </div>
 <% end %>
+
+<script>
+var preview = document.querySelector('#photos');
+const previewImages = (event) => {
+  preview.innerHTML = ''
+
+  if (event.target.files) {
+   [].forEach.call(event.target.files, readAndPreview)
+  }
+}
+
+const readAndPreview = (file) => {
+    if (!/\.(jpe?g|png|gif)$/i.test(file.name)) {
+      return
+    }
+
+    const reader = new FileReader();
+
+    reader.addEventListener("load", function() {
+      const image = new Image();
+      image.height = 100;
+      image.width = 100;
+      image.title  = file.name;
+      image.src    = this.result;
+      preview.appendChild(image);
+    });
+
+    reader.readAsDataURL(file);
+
+  }
+
+const openFileInput = () => {
+  document.querySelector('#yacht_photos').click();
+};
+
+document.querySelector('#photos').addEventListener('click', openFileInput)
+document.querySelector('#yacht_photos').addEventListener("change", previewImages);
+</script>

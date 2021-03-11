@@ -1,6 +1,6 @@
 class YachtsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show user_list]
-  before_action :set_yacht, only: %i[show book review edit destroy favorite]
+  before_action :set_yacht, only: %i[show book review edit destroy favorite update]
   before_action :set_selections, only: %i[new edit create]
 
   def index
@@ -22,6 +22,12 @@ class YachtsController < ApplicationController
   end
 
   def review
+  end
+
+  def update
+    authorize @yacht
+
+    raise
   end
 
   def search
