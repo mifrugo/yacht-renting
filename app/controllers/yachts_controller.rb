@@ -10,15 +10,13 @@ class YachtsController < ApplicationController
   def show
     @user = User.find(@yacht.user_id)
     @favorite = current_user.favorites.find { |f| f.yacht_id == @yacht.id } || nil
+    @booking = Booking.new
   end
 
   def new
     @yacht = Yacht.new
 
     authorize @yacht
-  end
-
-  def book
   end
 
   def review

@@ -7,6 +7,9 @@ class Yacht < ApplicationRecord
   has_many :equipments, dependent: :destroy
   has_many :equipment_types, through: :equipments
 
+  has_many :bookings
+  has_many :booking_users, through: :bookings
+
   belongs_to :user
 
   has_many_attached :photos

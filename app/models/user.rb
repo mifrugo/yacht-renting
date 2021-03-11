@@ -14,6 +14,9 @@ class User < ApplicationRecord
 
   has_many :favorites
   has_many :favorite_yachts, through: :favorites, source: :yacht
+  
+  has_many :bookings
+  has_many :booking_yachts, through: :bookings
 
   after_save :wipe_cache
 
