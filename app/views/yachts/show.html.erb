@@ -78,7 +78,7 @@
 
           <div class="card-body">
             <p class="card-text">
-              <% if @yacht.user_id == current_user.id %>
+              <% if user_signed_in? && @yacht.user_id == current_user.id %>
                 <% if policy(@yacht).destroy? %>
                   <%= link_to "Edit yacht", yacht_edit_path(@yacht), class: 'btn btn-warning' %>
                 <% end %>
