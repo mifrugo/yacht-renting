@@ -39,7 +39,9 @@ Rails.application.routes.draw do
 
 
   # Update review
-  patch   '/reviews/:id',         to: 'reviews#update'
+
+  post    '/reviews/:yacht_id',    to: 'reviews#create', as: :yacht_reviews
+  delete  '/reviews/:id',          to: 'reviews#destroy', as: :review_delete
 
   # Add to favorite
   #post    '/yatchs/:id/favorite', to: 'favorite#add'

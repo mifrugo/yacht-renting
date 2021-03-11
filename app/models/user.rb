@@ -18,6 +18,8 @@ class User < ApplicationRecord
   has_many :bookings
   has_many :booking_yachts, through: :bookings
 
+  has_many :reviews, dependent: :destroy
+
   after_save :wipe_cache
 
   def first_name=(val)
