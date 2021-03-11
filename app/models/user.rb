@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many :favorite_yachts, through: :favorites, source: :yacht
   
   has_many :bookings
+  has_many :booking_yachts, through: :bookings
 
   has_many :reviews, dependent: :destroy
 
@@ -50,6 +51,7 @@ class User < ApplicationRecord
       lavatar_tag(first_name[0] << last_name[0], size, { class: 'avatar' })
     end
   end
+
 
   private
 
