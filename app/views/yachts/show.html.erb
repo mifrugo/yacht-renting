@@ -132,6 +132,26 @@
   </div>
 </div>
 
+<%= simple_form_for [ @yacht, @review ] do |f| %>
+  <%= f.input :content %>
+  <%= f.submit "Submit review", method: :post, class: "btn btn-primary" %>
+<% end %>
+
+<ul class="list-group">
+  <% @yacht.reviews.each do |review| %>
+     <li class="list-group-item" id="besi" >
+      <%= review.content %>
+      <%= link_to "Remove",
+                  review_delete_path(review),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
+    </li>
+  <% end %>
+</ul>
+
+
+
+
 <style>
 .box {
   background-color: #f3f3f3;
@@ -150,4 +170,10 @@
   width: 80px;
   margin: auto;
 }
+
+#besi {
+  display: flex;
+  justify-content: space-between;
+}
+
 </style>

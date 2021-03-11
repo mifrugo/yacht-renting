@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_10_172305) do
+ActiveRecord::Schema.define(version: 2021_03_11_110151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,16 @@ ActiveRecord::Schema.define(version: 2021_03_10_172305) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.text "content"
+    t.bigint "yacht_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+    t.index ["yacht_id"], name: "index_reviews_on_yacht_id"
+  end
+
   create_table "service_types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -119,6 +129,8 @@ ActiveRecord::Schema.define(version: 2021_03_10_172305) do
   add_foreign_key "equipment", "yachts"
   add_foreign_key "favorites", "users"
   add_foreign_key "favorites", "yachts"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "reviews", "yachts"
   add_foreign_key "services", "service_types"
   add_foreign_key "services", "yachts"
   add_foreign_key "yachts", "users"

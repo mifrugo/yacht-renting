@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :favorites
   has_many :favorite_yachts, through: :favorites, source: :yacht
 
+  has_many :reviews, dependent: :destroy
+
   after_save :wipe_cache
 
   def first_name=(val)
