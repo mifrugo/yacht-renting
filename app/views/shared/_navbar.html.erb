@@ -4,6 +4,19 @@
     <span>My Yachty site</span>
   <% end %>
 
+  <div id="search-div" class="flex-grow-1">
+    <%= form_tag yachts_search_path, method: :get , class: 'form-inline' do %>
+      <div class="form-group m-auto w-50">
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control mx-sm-3 w-100",
+          placeholder: "Search yachts"
+        %>
+        <i class="fa fa-search"></i>
+      </div>
+    <% end %>
+  </div>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

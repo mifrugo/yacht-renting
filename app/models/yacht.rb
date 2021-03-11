@@ -1,4 +1,6 @@
 class Yacht < ApplicationRecord
+  include PgSearch::Model
+
   has_many :services, dependent: :destroy
   has_many :service_types, through: :services
 
@@ -11,4 +13,10 @@ class Yacht < ApplicationRecord
 
   validates :title, :description, :price_per_day, :bed_space, :address, presence: true
   validates :lat, :long, presence: { message: 'Enter a valid location' }
+
+  pg_search_scope :search_name_and_description,
+                  against: %i[title description],
+                  using: {
+                    tsearch: { prefix: true }
+                  }
 end

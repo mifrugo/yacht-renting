@@ -24,6 +24,17 @@ class YachtsController < ApplicationController
   def review
   end
 
+  def search
+    if params[:query].present?
+      @yachts = Yacht.search_name_and_description(params[:query])
+    else
+      @yachts = Yacht.all
+      render :index
+    end
+
+    authorize @yachts
+  end
+
   def user_favorite
     @yachts = current_user.favorite_yachts
     authorize @yachts
