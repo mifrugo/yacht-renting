@@ -1,6 +1,6 @@
 class YachtsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show user_list]
-  before_action :set_yacht, only: %i[show book review edit destroy favorite]
+  before_action :set_yacht, only: %i[show book review edit destroy favorite update]
   before_action :set_selections, only: %i[new edit create]
 
   def index
@@ -12,6 +12,7 @@ class YachtsController < ApplicationController
     @favorite = current_user.favorites.find { |f| f.yacht_id == @yacht.id } || nil
     @review = Review.new
     @booking = Booking.new
+
   end
 
   def new
@@ -21,6 +22,12 @@ class YachtsController < ApplicationController
   end
 
   def review
+  end
+
+  def update
+    authorize @yacht
+
+    raise
   end
 
   def search
@@ -78,6 +85,7 @@ class YachtsController < ApplicationController
     redirect_to yacht_user_path(@yacht.user_id), notice: 'Yacht removed'
   end
 
+
   def user_bookings
     @yachts = current_user.bookings
     @past = current_user.bookings.past
@@ -85,7 +93,7 @@ class YachtsController < ApplicationController
 
     authorize @yachts
   end
-
+  
   private
 
   def set_selections
