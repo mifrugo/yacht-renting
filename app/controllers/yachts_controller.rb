@@ -78,6 +78,12 @@ class YachtsController < ApplicationController
     redirect_to yacht_user_path(@yacht.user_id), notice: 'Yacht removed'
   end
 
+  def user_bookings
+    @yachts = current_user.booking_yachts
+    authorize @yachts
+    raise
+  end
+
   private
 
   def set_selections

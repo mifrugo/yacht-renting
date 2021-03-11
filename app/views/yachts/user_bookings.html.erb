@@ -1,0 +1,12 @@
+<h2 class="my-3 text-center"><span class="text-primary">Your upcoming bookings</h2>
+<% if @yachts.count.positive? %>
+  <div class="card-columns text-center">
+    <% @yachts.each do |yacht| %>
+      <%= yacht.price %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="w-50 my-3 mx-auto text-center text-italic">
+    <p>You don't have any booking just yet, Hurry up!</p>
+  </div>
+<% end %>
