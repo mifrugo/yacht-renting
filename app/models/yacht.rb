@@ -24,4 +24,8 @@ class Yacht < ApplicationRecord
                   using: {
                     tsearch: { prefix: true }
                   }
+
+  def self.can_review?(yacht, user)
+   !Booking.where("user_id =? and yacht_id =?", user, yacht).blank?
+  end
 end

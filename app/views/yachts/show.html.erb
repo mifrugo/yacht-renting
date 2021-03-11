@@ -96,8 +96,8 @@
                           html5: true,
                               required: true,
                               input_html: { autocomplete: "description" } %>
-                  <%= f.button :submit, "Book yacht!", class: 'btn btn-primary w-100'%>    
-                <% end %>         
+                  <%= f.button :submit, "Book yacht!", class: 'btn btn-primary w-100'%>
+                <% end %>
               <% else %>
                  <%= link_to 'To book, you must login', new_user_session_path, class: 'btn btn-outline-danger' %>
               <% end %>
@@ -147,20 +147,35 @@
   </div>
 </div>
 
-<%= simple_form_for [ @yacht, @review ] do |f| %>
-  <%= f.input :content %>
-  <%= f.submit "Submit review", method: :post, class: "btn btn-primary" %>
+<% if Yacht.can_review?(@yacht.id, current_user.id) %>
+  <%= simple_form_for [ @yacht, @review ] do |f| %>
+    <%= f.input :content %>
+    <%= f.input :rating %>
+    <%= f.submit "Submit Review", method: :post, class: "btn btn-primary" %>
+ <% end %>
 <% end %>
 
-<ul class="list-group">
+<ul class="list-group" style="padding-top: 10px">
   <% @yacht.reviews.each do |review| %>
-     <li class="list-group-item" id="besi" >
-      <%= review.content %>
-      <%= link_to "Remove",
+     <li class="list-group-item">
+      <div class="row">
+        <div class="col-8">
+          <%= '<i class="fas fa-star"></i>'.html_safe * (review.rating || 0) %>
+          <p><%= review.content %></p>
+        </div>
+        <div class="col-4" id="be">
+          <%= "From:"%>
+          <p><%= review.user.full_name %></p>
+        </div>
+      </div>
+    </li>
+         <div class="bes">
+             <%= link_to "Remove",
                   review_delete_path(review),
                   method: :delete,
                   data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
-    </li>
+         </div>
+
   <% end %>
 </ul>
 
@@ -186,9 +201,31 @@
   margin: auto;
 }
 
-#besi {
-  display: flex;
-  justify-content: space-between;
+#be {
+  text-align: right;
+}
+
+#be p {
+  font-weight: bolder;
+}
+
+.bes {
+  padding-top: 10px;
+}
+
+
+.fa-star {
+  color: yellow;
 }
 
 </style>
+
+
+
+
+
+
+
+
+
+
