@@ -12,7 +12,7 @@
     <div class="index-map">
       <div style="height: 100vh" class="mb-2 position-relative">
         <div id="map" data-apikey="<%= ENV['MAPBOX_KEY'] %>" data-latitude="12.496365"
-          data-longitude="41.902782" style="height: 100vh">
+          data-longitude="41.902782" data-markers="<%= @markers.to_json %>" style="height: 100vh">
         </div>
       </div>
     </div>

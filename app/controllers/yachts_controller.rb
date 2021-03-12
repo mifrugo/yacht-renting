@@ -5,6 +5,7 @@ class YachtsController < ApplicationController
 
   def index
     @yachts = policy_scope(Yacht)
+    marker_generator
   end
 
   def show
@@ -92,6 +93,10 @@ class YachtsController < ApplicationController
     @equipments = EquipmentType.all
 
     @services_selected = @equipments_selected = []
+  end
+
+  def marker_generator
+    @markers = @yachts.group_by(&:address)
   end
 
   def set_yacht
