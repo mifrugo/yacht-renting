@@ -1,8 +1,11 @@
-<h2 class="my-3 text-center"><span class="text-primary"><%= @user.first_name %>'s</span> yachts</h2>
+<div class="he">
+  <h2 class="my-3 text-center"><span class="text-primary"><%= @user.first_name %>'s</span> yachts</h2>
 <% if @yachts.count.positive? %>
   <div class="card-columns">
     <% @yachts.each do |yacht| %>
+    <div class="u-list">
       <%= render 'card', locals: yacht %>
+      </div>
     <% end %>
   </div>
 <% elsif user_signed_in? && current_user.id == params[:id].to_i %>
@@ -15,3 +18,20 @@
     <p>No listings found for this user.</p>
   </div>
 <% end %>
+</div>
+
+
+
+
+
+<style type="text/css">
+  @media screen and (max-width: 600px) {
+    .u-list {
+      width: 100%;
+      margin-left: 30px;
+    }
+    .he {
+      margin-top: 80px;
+    }
+}
+</style>

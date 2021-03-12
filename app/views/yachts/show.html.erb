@@ -67,7 +67,7 @@
 
   </div>
 
-  <div class="col-6 col-md-4">
+  <div class=" besi col-6 col-md-4">
     <% if @booked.positive? %>
       <div>
         <div class="card user-info text-center p-3 w-75 mx-auto mb-3">
@@ -82,7 +82,8 @@
       </div>
     <% end %>
     <div>
-      <div class="card user-info text-center p-3 w-75 mx-auto mb-3">
+      <div class="price">
+         <div class="card user-info text-center p-3 w-75 mx-auto mb-3">
          <ul class="list-group list-group-flush">
             <li class="list-group-item"><strong><%= @yacht.price_per_day %>€</strong> / day</li>
             <li class="list-group-item"><strong><%= @yacht.bed_space %></strong> bed spaces</li>
@@ -116,10 +117,12 @@
             </p>
         </div>
       </div>
+    </div>
+
 
     </div>
 
-    <div>
+    <div class="price">
       <div class="card user-info text-center p-3 w-75 m-auto">
         <%= @user.navbar_avatar(size: 80) %>
         <div class="card-body">
@@ -135,7 +138,7 @@
     </div>
 
     <% if user_signed_in? %>
-      <div class="text-center mt-4">
+      <div class="fav text-center mt-4">
       <% if @favorite %>
         <%= link_to 'Remove from favorites', favorite_path(@favorite), class: 'btn btn-outline-danger', method: :delete %>
       <% else %>
@@ -148,8 +151,10 @@
 
 </div>
 
-<h4>Location</h4>
-<p><%= @yacht.address %></p>
+<div class="t">
+  <h4>Location</h4>
+  <p><%= @yacht.address %></p>
+</div>
 <div class="row">
   <div class="col">
     <div style="height: 30vh" class="mb-2 position-relative">
@@ -223,7 +228,28 @@
   color: yellow;
 }
 
+
 </style>
+
+<style type="text/css">
+  @media screen and (max-width: 600px) {
+    .price {
+    width: 200%;
+    margin: 0 auto;
+  }
+  .t {
+    text-align: center;
+  }
+
+  .fav {
+   width: 200%;
+   margin-bottom: 20px;
+  }
+}
+</style>
+
+
+
 
 
 

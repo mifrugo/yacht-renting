@@ -2,7 +2,8 @@
   <h1 class="display-4">How it works:</h1>
 </div>
 
-<div class="container-steps">
+
+  <div class="container-steps">
 
   <% if user_signed_in? %>
     <%= link_to yachts_new_path, class: 'step-item' do %>
@@ -20,20 +21,37 @@
     <% end %>
   <% end %>
 
-  <%= link_to yachts_path, class: 'step-item' do %>
+  <%= link_to yachts_path, class: 'step-item', id: "besi" do %>
+
     <i class="fas fa-ship iconDetails"></i>
     <div class="icon-steps">
-	    <h4>Choose</h4>
-	  </div>
+      <h4>Choose</h4>
+    </div>
   <% end %>
 
   <%= link_to yacht_user_path(current_user || 1), class: 'step-item' do %>
     <i class="fas fa-anchor iconDetails"></i>
-	  <div class="icon-steps">
-	    <h4>Ready? sail!</h4>
-	  </div>
+    <div class="icon-steps">
+      <h4>Ready? Sail!</h4>
+    </div>
   <% end %>
 
 </div>
+
+
+
+
+<style type="text/css">
+  @media screen and (max-width: 600px) {
+
+   .step-item {
+      margin: 5px;
+   }
+   .step-item > #besi {
+    margin: 0px, 15px;
+   }
+}
+</style>
+
 
 
