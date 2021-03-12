@@ -1,16 +1,20 @@
 class ReviewsController < ApplicationController
 
 
-  def create
+  def review
     @review = Review.new(review_params)
     @yacht = Yacht.find(params[:yacht_id])
     @review.user = current_user
     @review.yacht = @yacht
-    authorize @review
-    if @review.save!
+
+    authorize @yacht
+
+    if @review.save
       redirect_to yacht_path(@yacht)
     else
-      render :new
+      @booking = Booking.new
+      @user = User.find(@yacht.user_id)
+      render 'yachts/show'
     end
   end
 
