@@ -5,7 +5,7 @@
   padding:10%;
   text-align:center;
   margin: auto;
-  background-image: linear-gradient(rgba(0,0,0, 0.2), rgba(0,0,0, 0.2)), url(https://images.unsplash.com/photo-1566288592686-d91a0b04e0e0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80);
+  background-image: url('footer.jpg');
   background-size: cover;
   background-position: center;
   justify-content: space-around;
@@ -34,4 +34,41 @@
 
 .step-item:hover {
   background-color: white;
+}
+
+body:not(.yachts-index) {
+  .card-columns {
+    @include media-breakpoint-only(lg) {
+      column-count: 4;
+    }
+    @include media-breakpoint-only(xl) {
+      column-count: 5;
+    }
+  }
+}
+.footer {
+  background: #F4F4F4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  padding: 0px 50px;
+  color: rgba(0,0,0,0.3);
+}
+.footer-links {
+  display: flex;
+  align-items: center;
+}
+.footer-links a {
+  color: black;
+  opacity: 0.15;
+  text-decoration: none;
+  font-size: 24px;
+  padding: 0px 10px;
+}
+.footer-links a:hover {
+  opacity: 1;
+}
+.footer .fa-heart {
+  color: #D23333;
 }

@@ -2,9 +2,9 @@
   indicators = ""
   divs = ""
 %>
-<h2 id="trend-title">Yachts on trend 🔥</h2>
+<h2 id="trend-title">🔥 Yachts on fire 🔥</h2>
 <div class="carousel-container">
-  <% @yachts.first(3).each.with_index do |yacht, index| %>
+  <% @yachts.last(5).each.with_index do |yacht, index| %>
     <% active = index == 0? "active" : ""
 
     indicators += <<-HTML

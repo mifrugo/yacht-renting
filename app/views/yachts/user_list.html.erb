@@ -1,6 +1,6 @@
 <h2 class="my-3 text-center"><span class="text-primary"><%= @user.first_name %>'s</span> yachts</h2>
 <% if @yachts.count.positive? %>
-  <div class="card-columns">
+  <div class="card-columns text-center">
     <% @yachts.each do |yacht| %>
       <%= render 'card', locals: yacht %>
     <% end %>

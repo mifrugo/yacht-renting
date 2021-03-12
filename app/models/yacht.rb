@@ -15,12 +15,13 @@ class Yacht < ApplicationRecord
   has_many_attached :photos
 
   has_many :reviews, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   validates :title, :description, :price_per_day, :bed_space, :address, presence: true
   validates :lat, :long, presence: { message: 'Enter a valid location' }
 
   pg_search_scope :search_name_and_description,
-                  against: %i[title description],
+                  against: %i[title description address],
                   using: {
                     tsearch: { prefix: true }
                   }
