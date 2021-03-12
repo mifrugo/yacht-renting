@@ -21,6 +21,8 @@ import { navBar } from '../components/init_navbar'
 import 'bootstrap-select/dist/js/bootstrap-select.min.js';
 
 document.addEventListener('turbolinks:load', () => {
+  document.querySelector('#map') && renderMap();
+
   removeAlert();
   initTimeAgo();
 
@@ -28,5 +30,4 @@ document.addEventListener('turbolinks:load', () => {
 
   $('.selectpicker').selectpicker();
 
-  document.querySelector('#map') && renderMap();
 });
