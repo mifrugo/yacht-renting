@@ -19,14 +19,14 @@ class Yacht < ApplicationRecord
   validates :title, :description, :price_per_day, :bed_space, :address, presence: true
   validates :lat, :long, presence: { message: 'Enter a valid location' }
 
-
   pg_search_scope :search_name_and_description,
                   against: %i[title description],
                   using: {
                     tsearch: { prefix: true }
                   }
 
-  def self.can_review?(yacht, user)
-   !Booking.where("user_id =? and yacht_id =?", user, yacht).blank?
+  def user_can_review?(user)
+    (Booking.where(user_id: user.id, yacht_id: id, payment_status: 'paid') &&
+    Review.where(user_id: user.id, yacht_id: id).blank?)
   end
 end

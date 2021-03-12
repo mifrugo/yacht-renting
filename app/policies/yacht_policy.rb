@@ -35,7 +35,12 @@ class YachtPolicy < ApplicationPolicy
 
   def user_bookings?
     true
-  end  
+  end
+
+  def review?
+    user && (Booking.where(user_id: user.id, yacht_id: record.id, payment_status: 'paid') &&
+    Review.where(user_id: user.id, yacht_id: record.id).blank?)
+  end
 
   def destroy?
     user == record.user
