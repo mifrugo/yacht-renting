@@ -27,8 +27,12 @@ class YachtsController < ApplicationController
 
   def update
     authorize @yacht
+    @yacht.update(yacht_params)
 
-    raise
+    save_services if params[:yacht][:services]
+    save_equipments if params[:yacht][:equipments]
+
+    redirect_to yacht_path(@yacht), notice: "Yacht updated"
   end
 
   def search
@@ -66,7 +70,7 @@ class YachtsController < ApplicationController
       save_services if params[:yacht][:services]
       save_equipments if params[:yacht][:equipments]
 
-      redirect_to yacht_path(@yacht), notice: "Listing succesfully created!"
+      redirect_to yacht_path(@yacht), notice: "Yacht succesfully created!"
     else
       @services_selected = params[:yacht][:services] || []
       @equipments_selected = params[:yacht][:equipments] || []
@@ -111,6 +115,8 @@ class YachtsController < ApplicationController
   end
 
   def save_services
+    Service.where(yacht: @yacht).destroy_all
+
     params[:yacht][:services].each do |service|
       new_service = Service.new(service_type_id: service)
       new_service.yacht = @yacht
@@ -119,6 +125,8 @@ class YachtsController < ApplicationController
   end
 
   def save_equipments
+    Equipment.where(yacht: @yacht).destroy_all
+
     params[:yacht][:equipments].each do |equipment|
       new_equipment = Equipment.new(equipment_type_id: equipment)
       new_equipment.yacht = @yacht
