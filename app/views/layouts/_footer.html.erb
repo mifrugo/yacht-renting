@@ -2,7 +2,7 @@
   <h1 class="display-4">How it works:</h1>
 </div>
 
-<div class="container-steps">
+<div class="container-steps" style="background-image: url(<%= image_path 'footer.jpg' %>)">
 
   <% if user_signed_in? %>
     <%= link_to yachts_new_path, class: 'step-item' do %>
