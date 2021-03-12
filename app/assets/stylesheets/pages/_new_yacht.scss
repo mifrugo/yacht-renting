@@ -54,3 +54,9 @@ body:not(.bookings-single_order) .card-yacht {
     margin: auto;
   }
 }
+
+.card-title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
