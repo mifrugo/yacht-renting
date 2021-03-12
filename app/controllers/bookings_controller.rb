@@ -37,7 +37,7 @@ class BookingsController < ApplicationController
     session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [{
-        name: @yacht.title, amount: @booking.price.to_i,
+        name: @yacht.title, amount: @booking.price.ceil,
         images: [
           Cloudinary::Utils.cloudinary_url(@yacht.photos.first.key)
         ], currency: 'eur', quantity: 1
