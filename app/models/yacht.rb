@@ -21,7 +21,7 @@ class Yacht < ApplicationRecord
   validates :lat, :long, presence: { message: 'Enter a valid location' }
 
   pg_search_scope :search_name_and_description,
-                  against: %i[title description],
+                  against: %i[title description address],
                   using: {
                     tsearch: { prefix: true }
                   }
