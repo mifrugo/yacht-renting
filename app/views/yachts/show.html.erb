@@ -48,7 +48,7 @@
       <h4>Services</h4>
       <ul class="box">
         <% @yacht.service_types.each do |service| %>
-          <li class="<%= service.name.downcase.gsub("\s", '_') %>"><%= service.name %></li>
+          <li class="<%= service.name.downcase.gsub("\s", '_') %>"> <%= image_tag (service.name.downcase.gsub("\s", '_')) rescue image_tag("default.png") %> <%= service.name %></li>
         <% end %>
       </ul>
     </div>
@@ -59,7 +59,7 @@
       <h4>Equipments</h4>
       <ul class="box">
         <% @yacht.equipment_types.each do |equipment| %>
-          <li class="<%= equipment.name.downcase.gsub("\s", '_') %>"><%= equipment.name %></li>
+          <li class="<%= equipment.name.downcase.gsub("\s", '_') %>"> <%= image_tag (equipment.name.downcase.gsub("\s", '_')) rescue image_tag("default.png") %> <%= equipment.name %></li>
         <% end %>
       </ul>
     </div>
@@ -123,7 +123,7 @@
       <div class="card user-info text-center p-3 w-75 m-auto">
         <%= @user.navbar_avatar(size: 80) %>
         <div class="card-body">
-          <h5 class="font-weight-bold"><%= @user.first_name %></h5>
+          <h5 class="font-weight-bold"><%= @user.full_name %></h5>
           <p class="card-text">
             Joined <time class="timeago" datetime="<%= @user.created_at.iso8601 %>"></time>
           </p>
@@ -187,7 +187,13 @@
   </div>
 <% end %>
 
+<style>
 
+.box img {
+  width: 20px;
+} 
+
+</style>
 
 
 

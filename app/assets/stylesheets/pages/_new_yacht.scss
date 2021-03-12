@@ -54,3 +54,11 @@ body:not(.bookings-single_order) .card-yacht {
     margin: auto;
   }
 }
+
+.captain::before {
+  background:url('../images/captain.png')
+}
+
+.crew::before {
+  background:url('../../images/crew.png')
+}
