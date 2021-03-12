@@ -9,11 +9,6 @@
   <% end %>
   <div class="card-body">
     <h5 class="card-title font-weight-bold"><%= locals.title %></h5>
-    <p class="card-text d-none">
-    <%=
-      locals.description = locals.description.length > 300 ? locals.description[0..200] << '...' : locals.description
-    %>
-    </p>
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item"><strong><%= locals.price_per_day %>€</strong> per day</li>
@@ -21,11 +16,5 @@
   </ul>
   <div class="card-body">
     <%= link_to 'Discover it!', yacht_path(locals.id), class: 'btn btn-primary w-100' %>
-    <% if policy(locals).destroy? %>
-      <%= link_to "update", yacht_edit_path(locals), class: 'badge badge-warning mt-3' %>
-    <% end %>
-    <% if policy(locals).update? %>
-      <%= link_to "remove", yacht_path(locals), method: :delete, class: 'badge badge-danger mt-3' %>
-    <% end %>
   </div>
 </div>

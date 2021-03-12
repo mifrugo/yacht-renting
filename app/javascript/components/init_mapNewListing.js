@@ -11,12 +11,44 @@ const clearMarkers = () => {
   markers = [];
 };
 
-const setMarker = () => {
-  const marker = new mapboxgl.Marker()
-    .setLngLat(map.getCenter())
-    .addTo(map);
+const formatHTML = (k, val) => {
+  let html = `<h5 class="text-center">Yachts in ${k}</h5><ul class="mb-0 px-3">`
 
-  markers.push(marker);
+  val.forEach((v) => {
+    html += `<li><a href="/yachts/${v.id}">${v.title}</a></li>`
+  })
+
+  html += '</ul>'
+
+  return html
+};
+
+const setMarker = () => {
+
+  if (document.querySelector('#map').dataset['markers'])
+  {
+    const markers = JSON.parse(document.querySelector('#map').dataset['markers']);
+
+    for (let [key, value] of Object.entries(markers)) {
+
+      const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(formatHTML(key, value));
+
+      let el = document.createElement('div');
+      el.id = 'marker';
+
+      new mapboxgl.Marker(el)
+        .setLngLat([value[0].lat, value[0].long])
+        .setPopup(popup)
+        .addTo(map);
+    }
+
+  } else {
+    const marker = new mapboxgl.Marker()
+      .setLngLat(map.getCenter())
+      .addTo(map);
+
+    markers.push(marker);
+  }
 };
 
 const renderMap = () => {
@@ -24,12 +56,13 @@ const renderMap = () => {
   console.log('Map init');
 
   mapboxgl.accessToken = document.querySelector('#map').dataset['apikey']
+  const zoom = document.querySelector('#map').dataset['zoom'] ? document.querySelector('#map').dataset['zoom'] : 12;
 
   map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [document.querySelector('#map').dataset['latitude'], document.querySelector('#map').dataset['longitude']],
-    zoom: 12,
+    zoom: zoom,
   });
 
   setMarker();

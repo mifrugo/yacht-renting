@@ -10,7 +10,8 @@ LOCATIONS =  [
 
 Equipment.destroy_all
 Service.destroy_all
-
+Booking.destroy_all
+Favorite.destroy_all
 Yacht.destroy_all
 # Location.destroy_all
 EquipmentType.destroy_all
@@ -24,6 +25,8 @@ ActiveRecord::Base.connection.reset_pk_sequence!('equipment_types')
 ActiveRecord::Base.connection.reset_pk_sequence!('service_types')
 ActiveRecord::Base.connection.reset_pk_sequence!('services')
 ActiveRecord::Base.connection.reset_pk_sequence!('equipments')
+ActiveRecord::Base.connection.reset_pk_sequence!('favorites')
+ActiveRecord::Base.connection.reset_pk_sequence!('bookings')
 
 puts "Creating your instances.."
 
@@ -33,11 +36,12 @@ puts "Creating your instances.."
 #   )
 # end
 
-  %w[Captain Crew Catering].each do |k|
+  ['Captain', 'Crew', 'Catering', 'Final Cleaning'].each do |k|
     ServiceType.create!(name: k)
   end
 
-  %w[GPS Fridge Heating Inverter].each do |k|
+  ['GPS', 'Fridge', 'Heating', 'Inverter', 'Hot water',
+  'Bimini', 'Sprayhood', 'Deck shower', 'Cockpit table', 'Cockpit speakers', 'Aft Bathing Platform', 'Bathing ladder', 'Outboard', 'Outboard motor', 'Electric windlass', 'Automatic pilot', 'Wi-Fi', 'TV', 'Microwave'].each do |k|
     EquipmentType.create!(name: k)
   end
 

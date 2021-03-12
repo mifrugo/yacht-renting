@@ -35,3 +35,14 @@
 .step-item:hover {
   background-color: white;
 }
+
+body:not(.yachts-index) {
+  .card-columns {
+    @include media-breakpoint-only(lg) {
+      column-count: 4;
+    }
+    @include media-breakpoint-only(xl) {
+      column-count: 5;
+    }
+  }
+}
