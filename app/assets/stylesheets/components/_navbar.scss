@@ -11,14 +11,11 @@ nav.scrolled {
   padding: 4px 9px;
 }
 
-nav:not(.scrolled) {
-  .navbar-brand {
-    background-color: rgba(255, 255, 255, 0.6);
-    border-radius: 16px;
-  }
-
-  span {
-    color: $black;
+body.pages-home {
+  nav:not(.scrolled) {
+    span {
+      color: $white;
+    }
   }
 }
 
@@ -76,7 +73,7 @@ body:not(.pages-home) {
   }
 }
 
-#search-div {
+.form-search {
   .form-group {
     position: relative;
 

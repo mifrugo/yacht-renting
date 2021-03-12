@@ -1,7 +1,18 @@
 <div class="jumbotron jumbotron-fluid pt-0 pb-4 d-flex align-items-center center-banner">
   <div class="container text-white d-none">
-    <h1 class="display-4" id="title">Rent Yachts</h1>
-    <p class="lead">We help you get what you need 😎🍹⛴</p>
+    <h1 class="display-4" id="title">Rent your next Yacht</h1>
+    <p class="lead">You deserve a break, get a yacht! 🛥</p>
+    <%= form_with url: yachts_search_path, method: :get, local: true, class: 'form-inline form-search' do |f|  %>
+      <div class="form-group m-auto w-50">
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control mx-sm-3 w-100",
+          placeholder: "Search your new adventure!"
+        %>
+        <%= f.submit 'Search!', class: 'btn btn-success w-50 mx-auto mt-3 text-white' %>
+      </div>
+    <% end %>
+
     <% unless user_signed_in? %>
       <hr class="my-4">
       <p>Join our community and get in touch with thousands of Yachts' renters.</p>

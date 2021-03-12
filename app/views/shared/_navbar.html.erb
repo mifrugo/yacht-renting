@@ -1,11 +1,11 @@
 <nav class="navbar navbar-expand-sm navbar-yacht fixed-top">
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag 'yacht.svg' %>
-    <span>My Yachty site</span>
+    <span>My Yachty</span>
   <% end %>
 
   <div id="search-div" class="flex-grow-1">
-    <%= form_tag yachts_search_path, method: :get , class: 'form-inline' do %>
+    <%= form_tag yachts_search_path, method: :get , class: 'form-inline form-search' do %>
       <div class="form-group m-auto w-50">
         <%= text_field_tag :query,
           params[:query],
@@ -25,6 +25,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
+        <%= link_to yachts_new_path, class: "btn btn-secondary mr-2" do %>
+          <i class="fas fa-ship"></i> Add new yacht
+        <% end %>
+
         <li class="nav-item dropdown">
           <a href="#" data-toggle="dropdown" id="navbarDropdown">
             <%= current_user.navbar_avatar %>
@@ -52,9 +56,6 @@
             <% end %>
           </div>
         </li>
-        <%= link_to yachts_new_path, class: "btn btn-warning ml-2" do %>
-          <i class="fas fa-ship"></i> New yacht
-        <% end %>
       <% else %>
         <% unless %w[sessions registrations].include? controller_name  %>
           <li class="nav-item">
