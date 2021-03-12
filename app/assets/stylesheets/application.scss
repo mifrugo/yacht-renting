@@ -11,6 +11,9 @@
 @import "font-awesome";
 @import "bootstrap-select/dist/css/bootstrap-select";
 
+@import 'mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+@import 'mapbox-gl/dist/mapbox-gl.css';
+
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
