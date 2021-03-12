@@ -55,10 +55,9 @@ body:not(.bookings-single_order) .card-yacht {
   }
 }
 
-.captain::before {
-  background:url('../images/captain.png')
-}
 
-.crew::before {
-  background:url('../../images/crew.png')
+.card-title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
