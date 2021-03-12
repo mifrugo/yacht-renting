@@ -11,6 +11,10 @@ nav.scrolled {
   padding: 4px 9px;
 }
 
+.footer-copyright span, .navbar-brand {
+  font-family: 'Chelsea Market', cursive;
+}
+
 body.pages-home {
   nav:not(.scrolled) {
     span {
