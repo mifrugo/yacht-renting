@@ -1,6 +1,5 @@
 class ReviewsController < ApplicationController
 
-
   def review
     @review = Review.new(review_params)
     @yacht = Yacht.find(params[:yacht_id])

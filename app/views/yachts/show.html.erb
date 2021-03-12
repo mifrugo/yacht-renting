@@ -68,8 +68,20 @@
   </div>
 
   <div class="col-6 col-md-4">
+    <% if @booked.positive? %>
+      <div>
+        <div class="card user-info text-center p-3 w-75 mx-auto mb-3">
+          <div class="card-body">
+            <p class="card-text">
+              <%= link_to users_bookings_path do %>
+                You booked this yacht <%= pluralize @booked, 'time' %>
+              <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
     <div>
-
       <div class="card user-info text-center p-3 w-75 mx-auto mb-3">
          <ul class="list-group list-group-flush">
             <li class="list-group-item"><strong><%= @yacht.price_per_day %>€</strong> / day</li>
@@ -88,12 +100,12 @@
               <% elsif user_signed_in? %>
                 <%= simple_form_for([ @yacht, @booking ]) do |f| %>
                   <%= f.input :from, as: :date,
-                            html5: true,
-                            required: true,
-                            autofocus: true,
-                            input_html: { autocomplete: "title" }%>
+                              html5: true,
+                              required: true,
+                              autofocus: true,
+                              input_html: { autocomplete: "title" }%>
                   <%= f.input :to, as: :date,
-                          html5: true,
+                              html5: true,
                               required: true,
                               input_html: { autocomplete: "description" } %>
                   <%= f.button :submit, "Book yacht!", class: 'btn btn-primary w-100'%>
@@ -111,7 +123,7 @@
       <div class="card user-info text-center p-3 w-75 m-auto">
         <%= @user.navbar_avatar(size: 80) %>
         <div class="card-body">
-          <h5><%= @user.first_name %></h5>
+          <h5 class="font-weight-bold"><%= @user.first_name %></h5>
           <p class="card-text">
             Joined <time class="timeago" datetime="<%= @user.created_at.iso8601 %>"></time>
           </p>
@@ -169,13 +181,6 @@
         </div>
       </div>
     </li>
-         <div class="bes">
-             <%= link_to "Remove",
-                  review_delete_path(review),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
-         </div>
-
   <% end %>
 </ul>
 

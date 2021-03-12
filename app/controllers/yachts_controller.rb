@@ -12,7 +12,7 @@ class YachtsController < ApplicationController
     @favorite = current_user.favorites.find { |f| f.yacht_id == @yacht.id } if user_signed_in?
     @review = Review.new
     @booking = Booking.new
-
+    @booked = user_signed_in? ? current_user.bookings.count { |b| b.yacht_id == @yacht.id } : 0
   end
 
   def new
