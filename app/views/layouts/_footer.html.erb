@@ -20,11 +20,12 @@
     <% end %>
   <% end %>
 
-  <%= link_to yachts_path, class: 'step-item' do %>
+  <%= link_to yachts_path, class: 'step-item', id: "besi" do %>
+
     <i class="fas fa-ship iconDetails"></i>
     <div class="icon-steps">
-	    <h4>Choose</h4>
-	  </div>
+      <h4>Choose</h4>
+    </div>
   <% end %>
 
   <%= link_to yacht_user_path(current_user || 1), class: 'step-item' do %>
@@ -33,7 +34,22 @@
 	    <h4>Sail!</h4>
 	  </div>
   <% end %>
-
 </div>
+
+
+
+
+<style type="text/css">
+  @media screen and (max-width: 600px) {
+
+   .step-item {
+      margin: 5px;
+   }
+   .step-item > #besi {
+    margin: 0px, 15px;
+   }
+}
+</style>
+
 
 

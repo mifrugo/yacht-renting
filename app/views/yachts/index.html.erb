@@ -1,6 +1,9 @@
-  <h2 class="mt-3 mb-4">List of all Yachts available ⚓️ </h2>
+  <div class="top">
+    <h2 class="mt-3 mb-4">List of all Yachts available ⚓️ </h2>
 
-  <div class="row">
+</div>
+<div class="b">
+    <div class="row">
   <div class="col-sm-8">
     <div class="card-columns text-center">
       <% @yachts.each do |yacht| %>
@@ -8,7 +11,9 @@
       <% end %>
     </div>
   </div>
-  <div class="col-sm-4">
+</div>
+</div>
+  <div class="col-sm-4" id="m">
     <div class="index-map">
       <div style="height: 100vh" class="mb-2 position-relative">
         <div id="map" data-apikey="<%= ENV['MAPBOX_KEY'] %>" data-latitude="32.496365"
@@ -17,13 +22,37 @@
       </div>
     </div>
   </div>
-</div>
+
+
+
+
+
 
 <% if policy(Yacht).new? %>
 <%= link_to "Create new listing", yachts_new_path, class: "btn btn-primary" %>
 <% end %>
+<style >
+  .mapboxgl-ctrl-geocoder {max-width: 100%; margin-bottom: 10px; width: 100%}
+  .mapboxgl-canvas {width: auto!important; height: 100%}
+</style>
 
-<style>
+
+<style type="text/css">
+  @media screen and (max-width: 600px) {
+    .body {
+      margin: 0px;
+    }
+  .b {
+    width: 400px;
+    margin-left: 25px;
+  }
+  .top {
+    margin-top: 40px;
+  }
+  #m {
+    max-width: 100%;
+  }
+
 #marker {
   background-image: url(<%= image_path 'yacht.svg' %>);
   background-size: cover;

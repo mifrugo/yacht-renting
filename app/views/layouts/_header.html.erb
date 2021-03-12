@@ -16,9 +16,21 @@
     <% unless user_signed_in? %>
       <hr class="my-4">
       <p>Join our community and get in touch with thousands of Yachts' renters.</p>
-      <p class="lead">
+      <p class="lead w-100">
       <%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-info ml-20" %>
       </p>
     <% end %>
   </div>
 </div>
+
+
+<style type="text/css">
+  @media screen and (max-width: 600px) {
+    .jumbotron-fluid {
+      margin-top: 80px;
+    }
+    .btn-info {
+      width: 200px;
+    }
+}
+</style>
