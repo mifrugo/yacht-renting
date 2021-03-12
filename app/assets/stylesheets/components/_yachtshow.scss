@@ -61,4 +61,73 @@
   display: none;
 }
 
+.comments-container {
+  border-radius: 8px;
+  padding: 5px;
+}
 
+.content-comments {
+  margin-top: 2px;
+  border-radius: 10px;
+  background-color: #f3f3f3;
+  padding: 1em 2em;
+  font-weight: lighter;
+
+}
+
+.comment-date {
+  font-style: italic;
+}
+.left-content-comments {
+  margin: auto;
+}
+
+.users-stars {
+  margin-bottom: 10px;
+}
+.mapboxgl-popup-content ul {
+  margin-bottom: 0
+}
+
+.avatar-comments {
+  flex-direction: column;
+}
+.left-content-comments > div {
+  align-items: center;
+  justify-content: center;
+}
+
+.box {
+  background-color: #f3f3f3;
+  width: 100%;
+  border-radius: 5px;
+  padding: 20px;
+  list-style: none;
+}
+.carousel-item img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.user-info .avatar {
+  width: 80px;
+  margin: auto;
+}
+
+#be {
+  text-align: right;
+}
+
+#be p {
+  font-weight: bolder;
+}
+
+.bes {
+  padding-top: 10px;
+}
+
+
+.fa-star {
+  color: #eeac14;
+}

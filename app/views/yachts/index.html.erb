@@ -5,7 +5,7 @@
 <div class="b">
     <div class="row">
   <div class="col-sm-8">
-    <div class="card-columns">
+    <div class="card-columns text-center">
       <% @yachts.each do |yacht| %>
       <%= render 'card', locals: yacht %>
       <% end %>
@@ -16,8 +16,8 @@
   <div class="col-sm-4" id="m">
     <div class="index-map">
       <div style="height: 100vh" class="mb-2 position-relative">
-        <div id="map" data-apikey="<%= ENV['MAPBOX_KEY'] %>" data-latitude="12.496365"
-          data-longitude="41.902782" style="height: 100vh">
+        <div id="map" data-apikey="<%= ENV['MAPBOX_KEY'] %>" data-latitude="32.496365"
+          data-longitude="41.902782" data-zoom="4" data-markers="<%= @markers.to_json %>" style="height: 100vh">
         </div>
       </div>
     </div>
@@ -52,5 +52,13 @@
   #m {
     max-width: 100%;
   }
+
+#marker {
+  background-image: url(<%= image_path 'yacht.svg' %>);
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 </style>
